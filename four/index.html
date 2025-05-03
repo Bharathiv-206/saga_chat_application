@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saga Chat</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-icons">
+                <div class="sidebar-icon home"><i class="fa-solid fa-house"></i></div>
+                <div class="sidebar-icon chat active"><i class="fa-solid fa-comment"></i></div>
+                <div class="sidebar-icon mail"><i class="fa-solid fa-envelope"></i></div>
+                <div class="sidebar-icon calendar"><i class="fa-solid fa-calendar"></i></div>
+                <div class="sidebar-icon drive"><i class="fa-solid fa-folder"></i></div>
+            </div>
+            <div class="sidebar-bottom">
+                <div class="user-avatar"><img src="images/men2.png" alt="profile" style="width: 40px; height: 40px;"></div>
+                <div class="sidebar-icon logout"><i class="fa-solid fa-right-from-bracket"></i></div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Navigation -->
+            <div class="top-nav">
+                <div class="logo">
+                    <!-- Updated Saga Chat Logo -->
+                    <div class="logo-image">
+                        <img src="images/ChatLogo.svg" alt="logo" class="logo-img">
+                        <span class="logo-saga">Saga</span>
+                        <span class="logo-chat">Chat</span>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search" class="search-input">
+                        <i class="fa-solid fa-search"></i>
+                    </div>
+                    <div class="nav-icon notification">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="nav-icon help"><i class="fa-solid fa-circle-question"></i></div>
+                    <div class="nav-icon settings"><i class="fa-solid fa-gear"></i></div>
+                </div>
+            </div>
+
+            <!-- Center Navigation -->
+            <div class="center-nav">
+                <div class="tabs">
+                    <div class="tab active" data-tab="unread">Unread</div>
+                    <div class="tab" data-tab="chats">Chats</div>
+                    <div class="tab" data-tab="group-chats">Group chats</div>
+                    <div class="tab" data-tab="meeting-chats">Meeting chats</div>
+                    <div class="tab" data-tab="file-chats">File chats</div>
+                     <button class="collapse-all-button">
+                        <i class="fa-solid fa-angles-down"></i> Collapse All Sections
+                    </button>
+                </div>
+                <div class="new-items-dropdown">
+                    <div class="new-items-button">New items <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="dropdown-content">
+                        <div class="dropdown-item"><i class="fa-solid fa-file"></i> New section</div>
+                        <div class="dropdown-item"><i class="fa-solid fa-comment"></i> New Chat</div>
+                        <div class="dropdown-item"><i class="fa-solid fa-users"></i> New Group</div>
+                    </div>
+                    <div>
+                   
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collapse All Button -->
+            <!-- <div class="collapse-all-container"> -->
+                <!-- <button class="collapse-all-button">
+                    <i class="fa-solid fa-angles-down"></i> Collapse All Sections
+                </button> -->
+            <!-- </div> -->
+
+            <!-- Chat Container -->
+            <div class="chat-container">
+                <!-- Chat List -->
+                <div class="chat-list">
+                    <!-- Favorites Section -->
+                    <div class="chat-section" data-section="favorite">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <i class="fa-solid fa-chevron-down section-toggle"></i> Favorite
+                            </div>
+                            <div class="section-more">
+                                <i class="fa-solid fa-ellipsis-vertical section-options"></i>
+                                <div class="section-dropdown hidden">
+                                    <!-- <div class="dropdown-item"><i class="fa-solid fa-plus"></i> Add new favorite</div> -->
+                                    <div class="dropdown-item"><i class="fa-solid fa-pen"></i> Rename section</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete section</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-items">
+                            <div class="chat-item" data-user-id="1">
+                                <div class="chat-avatar"><img src="images/bharathi.jpg" alt="user" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Bharathi Ragav</div>
+                                        <!-- <div class="chat-time">10:30 AM</div> -->
+                                    </div>
+                                    <div class="chat-message">Hi! Why did you call?</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <div class="user-dropdown hidden">
+                                        <div class="dropdown-item"><i class="fa-solid fa-star"></i> Remove from favorites</div>
+                                        <div class="dropdown-item"><i class="fa-solid fa-exclamation"></i> Mark as important</div>
+                                        <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
+                                        <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete chat</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-item" data-user-id="2">
+                                <div class="chat-avatar"><img src="images/thamizh.png" alt="user" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Thamizharasan Raguraman</div>
+                                        <!-- <div class="chat-time">Yesterday</div> -->
+                                    </div>
+                                    <div class="chat-message">This is a Figma Community file. Community is a...</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </div>
+                            </div>
+                            <div class="chat-item unread" data-user-id="3">
+                                <div class="chat-avatar"><img src="images/senkathir.png" alt="user" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Senkathir Selvan Selvamani</div>
+                                        <!-- <div class="chat-time">Yesterday</div> -->
+                                    </div>
+                                    <div class="chat-message">Hey team! Are we all set for the dashboard UI...</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Important Section -->
+                    <div class="chat-section" data-section="important">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <i class="fa-solid fa-chevron-down section-toggle"></i> Important
+                            </div>
+                            <div class="section-more">
+                                <i class="fa-solid fa-ellipsis-vertical section-options"></i>
+                                <div class="section-dropdown hidden">
+                                    <!-- <div class="dropdown-item"><i class="fa-solid fa-plus"></i> Add new important</div> -->
+                                    <div class="dropdown-item"><i class="fa-solid fa-pen"></i> Rename section</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete section</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-items">
+                            <div class="chat-item" data-user-id="5">
+                                <div class="chat-avatar"><img src="images/janani.png" alt="user" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Janani Radhakrishnan Sagasoft</div>
+                                        <!-- <div class="chat-time">Monday</div> -->
+                                    </div>
+                                    <div class="chat-message">Hi guys! I've added my wireframe ideas to the...</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </div>
+                            </div>
+                            <div class="chat-item unread" data-user-id="6">
+                                <div class="chat-avatar"><img src="images/men1.png" alt="user" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Vasanth Kumar Sivamani</div>
+                                        <!-- <div class="chat-time">Last week</div> -->
+                                    </div>
+                                    <div class="chat-message">Cool, let's hop on a quick call in 10 mins?</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- All Chats Section -->
+                    <div class="chat-section" data-section="chats">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <i class="fa-solid fa-chevron-down section-toggle"></i> Chats
+                            </div>
+                            <div class="section-more">
+                                <i class="fa-solid fa-ellipsis-vertical section-options"></i>
+                                <div class="section-dropdown hidden">
+                                    <!-- <div class="dropdown-item"><i class="fa-solid fa-plus"></i> Add new chat</div> -->
+                                    <div class="dropdown-item"><i class="fa-solid fa-pen"></i> Rename section</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete section</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-items">
+                            <div class="chat-item" data-user-id="4">
+                                <div class="chat-avatar"><img src="images/ethiraj.png" alt="user" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Ethiraj Bro Sagasoft</div>
+                                        <!-- <div class="chat-time">Monday</div> -->
+                                    </div>
+                                    <div class="chat-message">Almost ready, just finishing a few points.</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </div>
+                            </div>
+                            <div class="chat-item" data-user-id="7">
+                                <div class="chat-avatar"><img src="images/girl.png" alt="user" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Punitha senthil</div>
+                                        <!-- <div class="chat-time">Last week</div> -->
+                                    </div>
+                                    <div class="chat-message">This is a Figma Community file.Community is a...</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </div>
+                            </div>
+                            <div class="chat-item" data-user-id="5">
+                                <div class="chat-avatar"><img src="images/janani.png" alt="user" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Janani Radhakrishnan Sagasoft</div>
+                                        <!-- <div class="chat-time">Monday</div> -->
+                                    </div>
+                                    <div class="chat-message">Hi guys! I've added my wireframe ideas to the...</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </div>
+                            </div>
+                            <div class="chat-item unread" data-user-id="6">
+                                <div class="chat-avatar"><img src="images/men1.png" alt="user" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Vasanth Kumar Sivamani</div>
+                                        <!-- <div class="chat-time">Last week</div> -->
+                                    </div>
+                                    <div class="chat-message">Cool, let's hop on a quick call in 10 mins?</div>
+                                </div>
+                                
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </div>
+                            </div>
+                            <div class="chat-item" data-user-id="7">
+                                <div class="chat-avatar"><img src="images/girl.png" alt="user" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Punitha senthil</div>
+                                        <!-- <div class="chat-time">Last week</div> -->
+                                    </div>
+                                    <div class="chat-message">This is a Figma Community file.Community is a...</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </div>
+                            </div>
+                            <div class="chat-item" data-user-id="7">
+                                <div class="chat-avatar"><img src="images/men2.png" alt="user" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Abitha Kaasi</div>
+                                        <!-- <div class="chat-time">Last week</div> -->
+                                    </div>
+                                    <div class="chat-message">This is a Figma Community file.Community is a...</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                </div>
+                            </div>
+
+
+                            <div class="chat-item" data-user-id="1">
+                                <div class="chat-avatar"><img src="images/bharathi.jpg" alt="user" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Bharathi Ragav</div>
+                                        <!-- <div class="chat-time">10:30 AM</div> -->
+                                    </div>
+                                    <div class="chat-message">Hi! Why did you call?</div>
+                                </div>
+                                
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <div class="user-dropdown hidden">
+                                        <div class="dropdown-item"><i class="fa-solid fa-star"></i> Remove from favorites</div>
+                                        <div class="dropdown-item"><i class="fa-solid fa-exclamation"></i> Mark as important</div>
+                                        <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
+                                        <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete chat</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="see-more">See more...</div>
+                </div>
+
+                <!-- Chat Window -->
+                <div class="chat-window">
+                    <!-- Empty State -->
+                    <div class="empty-state">
+                        <div class="empty-state-image"><img src="images/ChatImage.svg" alt="default-image"></div>
+                        <div class="empty-state-text">
+                            <h2>Start Messages</h2>
+                            <p>Welcome to Saga chat</p>
+                        </div>
+                    </div>
+
+                    <!-- Active Chat (hidden by default) -->
+                    <div class="active-chat hidden">
+                        <!-- Chat Header -->
+                        <div class="chat-header">
+                            <div class="chat-user">
+                                <div class="back-button"><i class="fa-solid fa-arrow-left"></i></div>
+                                <div class="user-avatar"></div>
+                                <div class="user-info">
+                                    <div class="user-name">Bharathi Ragav</div>
+                                    <div class="user-status">Last seen 14:03</div>
+                                </div>
+                            </div>
+                            <div class="chat-actions">
+                                <div class="action-icon voice-call"><i class="fa-solid fa-phone"></i></div>
+                                <div class="action-icon video-call"><i class="fa-solid fa-video"></i></div>
+                                <div class="action-icon"><i class="fa-solid fa-ellipsis-vertical"></i></div>
+                            </div>
+                        </div>
+
+                        <!-- Chat Messages -->
+                        <div class="messages-container">
+                            <div class="message outgoing">
+                                <div class="message-content">
+                                    <p>Hey Grace, how's it going?</p>
+                                    <div class="message-time">06:20</div>
+                                </div>
+                            </div>
+                            <div class="message incoming">
+                                <div class="message-content">
+                                    <p>Hi Jack! I'm doing well, thanks. Can't wait for the weekend!</p>
+                                    <div class="message-time">06:20</div>
+                                </div>
+                            </div>
+                            <div class="message incoming">
+                                <div class="message-content">
+                                    <p>Hiking sounds amazing! I might catch up on some reading and also meet up with a few friends on Sunday.</p>
+                                    <div class="message-time">06:20</div>
+                                </div>
+                            </div>
+                            <div class="message outgoing">
+                                <div class="message-content">
+                                    <p>I know, right? Weekend plans are the best. Any exciting plans on your end?</p>
+                                    <div class="message-time">06:21</div>
+                                </div>
+                            </div>
+                            <div class="message incoming">
+                                <div class="message-content">
+                                    <p>I'm thinking of going for a hike on Saturday. How about you?</p>
+                                    <div class="message-time">06:21</div>
+                                </div>
+                            </div>
+                            <div class="message outgoing">
+                                <div class="message-content">
+                                    <p>Can't wait for the weekend!</p>
+                                    <div class="message-time">06:21</div>
+                                </div>
+                            </div>
+                            <div class="message incoming">
+                                <div class="message-content">
+                                    <p>That sounds like a great plan! Excited 😃</p>
+                                    <div class="message-time">06:21</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Message Input -->
+                        <div class="message-input-container">
+                            <div class="message-input-wrapper">
+                                <div class="input-icon emoji-button"><i class="fa-regular fa-face-smile"></i></div>
+                                <input type="text" placeholder="Type message..." class="message-input">
+                                <div class="input-icon voice-record">
+                                    <i class="fa-solid fa-microphone"></i>
+                                    <span class="recording-indicator hidden">Recording...</span>
+                                </div>
+                                <div class="input-icon attachment-button">
+                                    <i class="fa-solid fa-paperclip"></i>
+                                    <input type="file" class="file-input hidden" multiple>
+                                </div>
+                                <div class="input-icon send"><i class="fa-solid fa-paper-plane"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal call-modal hidden">
+        <div class="modal-content">
+            <div class="modal-close"><i class="fa-solid fa-xmark"></i></div>
+            <div class="call-info">
+                <div class="call-avatar"></div>
+                <div class="call-name">Bharathi Ragav</div>
+                <div class="call-status">Calling...</div>
+            </div>
+            <div class="call-actions">
+                <div class="call-action mute"><i class="fa-solid fa-microphone"></i></div>
+                <div class="call-action video"><i class="fa-solid fa-video"></i></div>
+                <div class="call-action end"><i class="fa-solid fa-phone-slash"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal settings-modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="logo">
+                    <span class="logo-saga">Saga</span>
+                    <span class="logo-chat">Chat</span>
+                    <span class="settings-title">Settings</span>
+                </div>
+                <div class="modal-close"><i class="fa-solid fa-xmark"></i></div>
+            </div>
+            <div class="modal-body">
+                <div class="settings-section">
+                    <h3>General Settings</h3>
+                    <div class="settings-option">
+                        <span>Dark Mode</span>
+                        <label class="switch">
+                            <input type="checkbox" id="darkModeToggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="settings-option">
+                        <span>Notifications</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="settings-option">
+                        <span>Sound</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h3>Privacy</h3>
+                    <div class="settings-option">
+                        <span>Show read receipts</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                    <div class="settings-option">
+                        <span>Show last seen</span>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="save-button">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="help-panel hidden">
+        <div class="help-header">
+            <h2>Help Center</h2>
+            <div class="help-close"><i class="fa-solid fa-xmark"></i></div>
+        </div>
+        <div class="help-content">
+            <div class="help-section">
+                <h3>Getting Started</h3>
+                <ul>
+                    <li><a href="#">How to create a new chat</a></li>
+                    <li><a href="#">Setting up your profile</a></li>
+                    <li><a href="#">Managing notifications</a></li>
+                </ul>
+            </div>
+            <div class="help-section">
+                <h3>Features</h3>
+                <ul>
+                    <li><a href="#">Voice and video calls</a></li>
+                    <li><a href="#">Creating group chats</a></li>
+                    <li><a href="#">Sharing files and media</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="emoji-picker hidden">
+        <div class="emoji-categories">
+            <span class="emoji-category active">😀</span>
+            <span class="emoji-category">❤️</span>
+            <span class="emoji-category">🐶</span>
+            <span class="emoji-category">🍎</span>
+            <span class="emoji-category">🏠</span>
+        </div>
+        <div class="emoji-list">
+            <span class="emoji">😀</span>
+            <span class="emoji">😁</span>
+            <span class="emoji">😂</span>
+            <span class="emoji">🤣</span>
+            <span class="emoji">😃</span>
+            <span class="emoji">😄</span>
+            <span class="emoji">😅</span>
+            <span class="emoji">😆</span>
+            <span class="emoji">😉</span>
+            <span class="emoji">😊</span>
+            <span class="emoji">😋</span>
+            <span class="emoji">😎</span>
+            <span class="emoji">😍</span>
+            <span class="emoji">😘</span>
+            <span class="emoji">🥰</span>
+            <span class="emoji">😗</span>
+            <span class="emoji">😙</span>
+            <span class="emoji">😚</span>
+            <span class="emoji">🙂</span>
+            <span class="emoji">🤗</span>
+        </div>
+    </div>
+
+    <div class="notification-dropdown hidden">
+        <div class="dropdown-header">
+            <span>Notifications</span>
+            <div class="dropdown-action">Mark all as read</div>
+        </div>
+        <div class="notification-list">
+            <div class="notification-item unread">
+                <div class="notification-avatar"></div>
+                <div class="notification-content">
+                    <div class="notification-text"><strong>Bharathi Ragav</strong> sent you a message</div>
+                    <div class="notification-time">5 minutes ago</div>
+                </div>
+            </div>
+            <div class="notification-item unread">
+                <div class="notification-avatar"></div>
+                <div class="notification-content">
+                    <div class="notification-text"><strong>Thamizharasan</strong> mentioned you in a group</div>
+                    <div class="notification-time">1 hour ago</div>
+                </div>
+            </div>
+            <div class="notification-item">
+                <div class="notification-avatar"></div>
+                <div class="notification-content">
+                    <div class="notification-text"><strong>Senkathir</strong> shared a file with you</div>
+                    <div class="notification-time">Yesterday</div>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown-footer">
+            <a href="#">View all notifications</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
