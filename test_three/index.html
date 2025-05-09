@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saga Chat</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Navigation Icons -->
+        <div class="left-nav">
+            <a href="#" class="nav-icon active" title="Home"><i class="fas fa-home"></i></a>
+            <a href="#" class="nav-icon" title="Chat"><i class="fas fa-comments"></i></a>
+            <a href="#" class="nav-icon" title="Mail"><i class="fas fa-envelope"></i></a>
+            <a href="#" class="nav-icon" title="Calendar"><i class="fas fa-calendar"></i></a>
+            <a href="#" class="nav-icon" title="Files"><i class="fas fa-folder"></i></a>
+            <div class="nav-spacer"></div>
+            <a href="#" class="nav-icon" id="profile-icon" title="Profile"><i class="fas fa-user"></i></a>
+            <a href="#" class="nav-icon" id="logout-icon" title="Logout"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+
+        <!-- Main Container -->
+        <div class="main-container">
+            <!-- Top Navigation Bar -->
+            <header class="top-nav">
+                <div class="logo">
+                    <i class="fas fa-comment-dots"></i>
+                    <span><span class="blue-text">Saga</span> <span class="orange-text">Chat</span></span>
+                </div>
+                <div class="search-container">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search">
+                    </div>
+                </div>
+                <div class="top-nav-actions">
+                    <button class="action-btn" id="help-btn" title="Help">
+                        <i class="fas fa-question-circle"></i>
+                    </button>
+                    <button class="action-btn" id="notification-btn" title="Notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <button class="action-btn" id="settings-btn" title="Settings">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Secondary Navigation Bar -->
+            <div class="secondary-nav">
+                <a href="#" class="nav-link active"><i class="far fa-envelope"></i> Unread</a>
+                <a href="#" class="nav-link"><i class="far fa-comment"></i> Chats</a>
+                <a href="#" class="nav-link"><i class="fas fa-users"></i> Group chats</a>
+                <a href="#" class="nav-link"><i class="fas fa-video"></i> Meeting chats</a>
+                <a href="#" class="nav-link"><i class="far fa-file"></i> File chats</a>
+                <div class="dropdown">
+                    <button class="dropdown-btn" id="new-items-btn">
+                        <i class="fas fa-plus-circle"></i> New items <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content" id="new-items-dropdown">
+                        <a href="#"><i class="fas fa-plus-circle"></i> New section</a>
+                        <a href="#"><i class="far fa-comment"></i> New Chat</a>
+                        <a href="#"><i class="fas fa-users"></i> New Group</a>
+                    </div>
+                </div>
+                <a href="#" class="nav-link"><i class="fas fa-compress-alt"></i> Collapse all section</a>
+            </div>
+
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Sidebar -->
+                <aside class="sidebar" id="sidebar">
+                    <!-- Chat Categories -->
+                    <div class="chat-categories">
+                        <!-- Favorite Category -->
+                        <div class="chat-category">
+                            <div class="category-header">
+                                <div class="category-title">
+                                    <i class="fas fa-star"></i>
+                                    <span>Favorite</span>
+                                </div>
+                                <div class="category-actions">
+                                    <button class="category-toggle"><i class="fas fa-chevron-down"></i></button>
+                                    <button class="category-more"><i class="fas fa-ellipsis-v"></i></button>
+                                </div>
+                            </div>
+                            <div class="category-contacts">
+                                <div class="contact-item" data-contact="bharathi">
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/MessageContent.jpg-bNTN3Sh7g1SAg496Xv7wdx1Q5OIbTy.jpeg" alt="Bharathi">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Bharathi Ragav</div>
+                                        <div class="contact-message">Hi! Why did you call?</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">12:30</span>
+                                    </div>
+                                    <div class="contact-actions">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="thamizharan">
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Thamizharan">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Thamizharan Raguraman</div>
+                                        <div class="contact-message">This is a Figma Community file. Community is a...</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">10:15</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="senkathir">
+                                    <div class="contact-dot"></div>
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Senkathir">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Senkathir Selvan Selvamani</div>
+                                        <div class="contact-message">Hey team! Are we all set for the dashboard UI...</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">09:30</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="ethiraj">
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Ethiraj">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Ethiraj Bro Sagasoft</div>
+                                        <div class="contact-message">Almost ready, just finishing a few points.</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">14:45</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Important Category -->
+                        <div class="chat-category">
+                            <div class="category-header">
+                                <div class="category-title">
+                                    <i class="fas fa-bookmark"></i>
+                                    <span>Important</span>
+                                </div>
+                                <div class="category-actions">
+                                    <button class="category-toggle"><i class="fas fa-chevron-down"></i></button>
+                                    <button class="category-more"><i class="fas fa-ellipsis-v"></i></button>
+                                </div>
+                            </div>
+                            <div class="category-contacts">
+                                <div class="contact-item" data-contact="janani">
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Janani">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Janani Radhakrishnan Sagasoft</div>
+                                        <div class="contact-message">Hi guys! I've added my wireframe ideas to the...</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">16:20</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="senkathir2">
+                                    <div class="contact-dot"></div>
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Senkathir">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Senkathir Selvan Selvamani</div>
+                                        <div class="contact-message">Awesome, I'll check it out. Thanks Thamizh!</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">15:45</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="senkathir3">
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Senkathir">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Senkathir Selvan Selvamani</div>
+                                        <div class="contact-message">Just saw it. Looks solid. Maybe we can tweak...</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">15:50</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="vasanth">
+                                    <div class="contact-dot"></div>
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Vasanth">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Vasanth Kumar Sivamani</div>
+                                        <div class="contact-message">Cool, let's hop on a quick call in 10 mins?</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">16:30</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="punitha">
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Punitha">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Punitha senthil</div>
+                                        <div class="contact-message">This is a Figma Community file.Community is a...</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">17:15</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Chats Category -->
+                        <div class="chat-category">
+                            <div class="category-header">
+                                <div class="category-title">
+                                    <i class="fas fa-comments"></i>
+                                    <span>Chats</span>
+                                </div>
+                                <div class="category-actions">
+                                    <button class="category-toggle"><i class="fas fa-chevron-down"></i></button>
+                                    <button class="category-more"><i class="fas fa-ellipsis-v"></i></button>
+                                </div>
+                            </div>
+                            <div class="category-contacts">
+                                <div class="contact-item" data-contact="bharathi2">
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/MessageContent.jpg-bNTN3Sh7g1SAg496Xv7wdx1Q5OIbTy.jpeg" alt="Bharathi">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Bharathi Ragav</div>
+                                        <div class="contact-message">Hi! Why did you call?</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">12:30</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="thamizharan2">
+                                    <div class="contact-dot"></div>
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Thamizharan">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Thamizharan Raguraman</div>
+                                        <div class="contact-message">This is a Figma Community file. Community is a...</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">10:15</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="senkathir4">
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Senkathir">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Senkathir Selvan Selvamani</div>
+                                        <div class="contact-message">Hey team! Are we all set for the dashboard UI...</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">09:30</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="ethiraj2">
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Ethiraj">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Ethiraj Bro Sagasoft</div>
+                                        <div class="contact-message">Almost ready, just finishing a few points.</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">14:45</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="janani2">
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Janani">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Janani Radhakrishnan Sagasoft</div>
+                                        <div class="contact-message">Hi guys! I've added my wireframe ideas to the...</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">16:20</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="senkathir5">
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Senkathir">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Senkathir Selvan Selvamani</div>
+                                        <div class="contact-message">Awesome, I'll check it out. Thanks Thamizh!</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">15:45</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="senkathir6">
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Senkathir">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Senkathir Selvan Selvamani</div>
+                                        <div class="contact-message">Just saw it. Looks solid. Maybe we can tweak...</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">15:50</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="vasanth2">
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Vasanth">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Vasanth Kumar Sivamani</div>
+                                        <div class="contact-message">Cool, let's hop on a quick call in 10 mins?</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">16:30</span>
+                                    </div>
+                                </div>
+                                <div class="contact-item" data-contact="punitha2">
+                                    <div class="contact-avatar">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Punitha">
+                                    </div>
+                                    <div class="contact-info">
+                                        <div class="contact-name">Punitha senthil</div>
+                                        <div class="contact-message">This is a Figma Community file.Community is a...</div>
+                                    </div>
+                                    <div class="contact-status">
+                                        <span class="message-time">17:15</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- See More Link -->
+                    <div class="see-more">
+                        <a href="#">See more...</a>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="main-content">
+                    <!-- Empty State -->
+                    <div class="empty-state" id="empty-state">
+                        <div class="empty-state-content">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Start chatting">
+                            <h2>Start Messages</h2>
+                            <p>Welcome to Saga chat</p>
+                        </div>
+                    </div>
+
+                    <!-- Chat Area -->
+                    <div class="chat-area" id="chat-area">
+                        <!-- Chat Header -->
+                        <div class="chat-header">
+                            <div class="chat-header-info">
+                                <button class="back-btn" id="back-btn"><i class="fas fa-arrow-left"></i></button>
+                                <div class="chat-avatar" id="profile-trigger">
+                                    <img id="current-chat-avatar" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/MessageContent.jpg-bNTN3Sh7g1SAg496Xv7wdx1Q5OIbTy.jpeg" alt="Contact">
+                                </div>
+                                <div class="chat-contact-info">
+                                    <div class="chat-contact-name" id="current-chat-name">Bharathi Ragav</div>
+                                    <div class="chat-contact-status">Last seen 14:03</div>
+                                </div>
+                            </div>
+                            <div class="chat-header-actions">
+                                <button class="action-btn" id="voice-call-btn"><i class="fas fa-phone"></i></button>
+                                <button class="action-btn" id="video-call-btn"><i class="fas fa-video"></i></button>
+                                <button class="action-btn" id="chat-menu-btn"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                        </div>
+
+                        <!-- Chat Messages -->
+                        <div class="chat-messages" id="chat-messages">
+                            <!-- Messages will be dynamically added here -->
+                        </div>
+
+                        <!-- Chat Input -->
+                        <div class="chat-input">
+                            <button class="input-action-btn" id="attachment-btn">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <div class="input-field">
+                                <input type="text" id="message-input" placeholder="Type message...">
+                                <button class="input-action-btn" id="emoji-btn">
+                                    <i class="far fa-smile"></i>
+                                </button>
+                                <button class="input-action-btn" id="mic-btn">
+                                    <i class="fas fa-microphone"></i>
+                                </button>
+                            </div>
+                            <button class="send-btn" id="send-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+
+        <!-- Emoji Picker -->
+        <div class="emoji-picker" id="emoji-picker">
+            <div class="emoji-categories">
+                <button class="emoji-category active">😀</button>
+                <button class="emoji-category">❤️</button>
+                <button class="emoji-category">🐶</button>
+                <button class="emoji-category">🍎</button>
+                <button class="emoji-category">🏠</button>
+                <button class="emoji-category">🚗</button>
+                <button class="emoji-category">⚽</button>
+                <button class="emoji-category">💡</button>
+            </div>
+            <div class="emoji-list">
+                <button class="emoji">😀</button>
+                <button class="emoji">😃</button>
+                <button class="emoji">😄</button>
+                <button class="emoji">😁</button>
+                <button class="emoji">😆</button>
+                <button class="emoji">😅</button>
+                <button class="emoji">😂</button>
+                <button class="emoji">🤣</button>
+                <button class="emoji">😊</button>
+                <button class="emoji">😇</button>
+                <button class="emoji">🙂</button>
+                <button class="emoji">🙃</button>
+                <button class="emoji">😉</button>
+                <button class="emoji">😌</button>
+                <button class="emoji">😍</button>
+                <button class="emoji">🥰</button>
+                <button class="emoji">😘</button>
+                <button class="emoji">😗</button>
+                <button class="emoji">😙</button>
+                <button class="emoji">😚</button>
+                <button class="emoji">😋</button>
+                <button class="emoji">😛</button>
+                <button class="emoji">😝</button>
+                <button class="emoji">😜</button>
+                <button class="emoji">🤪</button>
+                <button class="emoji">🤨</button>
+                <button class="emoji">🧐</button>
+                <button class="emoji">🤓</button>
+                <button class="emoji">😎</button>
+            </div>
+        </div>
+
+        <!-- Attachment Options -->
+        <div class="attachment-options" id="attachment-options">
+            <div class="attachment-option">
+                <div class="attachment-icon photo">
+                    <i class="fas fa-image"></i>
+                </div>
+                <span>Photo</span>
+            </div>
+            <div class="attachment-option">
+                <div class="attachment-icon video">
+                    <i class="fas fa-video"></i>
+                </div>
+                <span>Video</span>
+            </div>
+            <div class="attachment-option">
+                <div class="attachment-icon document">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <span>Document</span>
+            </div>
+            <div class="attachment-option">
+                <div class="attachment-icon audio">
+                    <i class="fas fa-microphone"></i>
+                </div>
+                <span>Audio</span>
+            </div>
+            <div class="attachment-option">
+                <div class="attachment-icon location">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <span>Location</span>
+            </div>
+            <div class="attachment-option">
+                <div class="attachment-icon contact">
+                    <i class="fas fa-user"></i>
+                </div>
+                <span>Contact</span>
+            </div>
+        </div>
+
+        <!-- Reaction Options -->
+        <div class="reaction-options" id="reaction-options">
+            <button class="reaction-option">👍</button>
+            <button class="reaction-option">❤️</button>
+            <button class="reaction-option">😂</button>
+            <button class="reaction-option">😮</button>
+            <button class="reaction-option">😢</button>
+            <button class="reaction-option">+</button>
+        </div>
+
+        <!-- Message Options Menu -->
+        <div class="message-options-menu" id="message-options-menu">
+            <div class="message-option">
+                <i class="fas fa-reply"></i>
+                <span>Reply</span>
+            </div>
+            <div class="message-option">
+                <i class="fas fa-forward"></i>
+                <span>Forward</span>
+            </div>
+            <div class="message-option">
+                <i class="fas fa-thumbtack"></i>
+                <span>Pin</span>
+            </div>
+            <div class="message-option">
+                <i class="fas fa-star"></i>
+                <span>Star</span>
+            </div>
+            <div class="message-option delete-option">
+                <i class="fas fa-trash"></i>
+                <span>Delete</span>
+            </div>
+        </div>
+
+        <!-- Chat Menu Options -->
+        <div class="chat-menu-options" id="chat-menu-options">
+            <div class="chat-menu-option">
+                <i class="fas fa-search"></i>
+                <span>Search</span>
+            </div>
+            <div class="chat-menu-option">
+                <i class="fas fa-bell-slash"></i>
+                <span>Mute notifications</span>
+            </div>
+            <div class="chat-menu-option">
+                <i class="fas fa-file"></i>
+                <span>Media, links and docs</span>
+            </div>
+            <div class="chat-menu-option">
+                <i class="fas fa-trash"></i>
+                <span>Clear chat</span>
+            </div>
+            <div class="chat-menu-option">
+                <i class="fas fa-ban"></i>
+                <span>Block</span>
+            </div>
+        </div>
+
+        <!-- Context Menu -->
+        <div class="context-menu" id="context-menu">
+            <div class="context-menu-section">
+                <div class="context-menu-item" id="move-to-option">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Move to</span>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="context-menu-submenu" id="move-to-submenu">
+                    <div class="context-menu-item">
+                        <i class="fas fa-star"></i>
+                        <span>Favorite</span>
+                    </div>
+                    <div class="context-menu-item">
+                        <i class="fas fa-bookmark"></i>
+                        <span>Important</span>
+                    </div>
+                    <div class="context-menu-item">
+                        <i class="fas fa-plus"></i>
+                        <span>New section</span>
+                    </div>
+                </div>
+            </div>
+            <div class="context-menu-section">
+                <div class="context-menu-item">
+                    <i class="fas fa-bell-slash"></i>
+                    <span>Mute</span>
+                </div>
+                <div class="context-menu-item">
+                    <i class="fas fa-sort"></i>
+                    <span>Sort</span>
+                </div>
+                <div class="context-menu-item">
+                    <i class="fas fa-pen"></i>
+                    <span>Rename</span>
+                </div>
+                <div class="context-menu-item">
+                    <i class="fas fa-trash"></i>
+                    <span>Delete</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Profile Drawer -->
+        <div class="profile-drawer" id="profile-drawer">
+            <div class="profile-drawer-header">
+                <button class="close-profile-btn" id="close-profile-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2>Profile</h2>
+            </div>
+            <div class="profile-drawer-content">
+                <div class="profile-avatar">
+                    <img id="profile-avatar" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/MessageContent.jpg-bNTN3Sh7g1SAg496Xv7wdx1Q5OIbTy.jpeg" alt="Profile">
+                </div>
+                <div class="profile-info">
+                    <div class="profile-name" id="profile-name">Bharathi Ragav</div>
+                    <div class="profile-status" id="profile-status">Online</div>
+                </div>
+                <div class="profile-actions">
+                    <button class="profile-action-btn">
+                        <i class="fas fa-phone"></i>
+                        <span>Call</span>
+                    </button>
+                    <button class="profile-action-btn">
+                        <i class="fas fa-video"></i>
+                        <span>Video</span>
+                    </button>
+                    <button class="profile-action-btn">
+                        <i class="fas fa-search"></i>
+                        <span>Search</span>
+                    </button>
+                </div>
+                <div class="profile-details">
+                    <div class="profile-section">
+                        <h3>Contact Info</h3>
+                        <div class="profile-detail">
+                            <div class="detail-label">Email</div>
+                            <div class="detail-value">bharathi.ragav@example.com</div>
+                        </div>
+                        <div class="profile-detail">
+                            <div class="detail-label">Phone</div>
+                            <div class="detail-value">+91 98765 43210</div>
+                        </div>
+                        <div class="profile-detail">
+                            <div class="detail-label">About</div>
+                            <div class="detail-value">Hey there! I'm using Saga Chat</div>
+                        </div>
+                    </div>
+                    <div class="profile-section">
+                        <div class="section-header">
+                            <h3>Media, Links and Docs</h3>
+                            <a href="#">See all</a>
+                        </div>
+                        <div class="media-grid">
+                            <div class="media-item">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/MessageContent.jpg-bNTN3Sh7g1SAg496Xv7wdx1Q5OIbTy.jpeg" alt="Media">
+                            </div>
+                            <div class="media-item">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20104.jpg-mvAYtpnWICqYYqw9q30HAMWHjpR9VN.jpeg" alt="Media">
+                            </div>
+                            <div class="media-item">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Media">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-actions-bottom">
+                    <button class="block-btn">
+                        <i class="fas fa-ban"></i>
+                        <span>Block</span>
+                    </button>
+                    <button class="report-btn">
+                        <i class="fas fa-flag"></i>
+                        <span>Report</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Help Drawer -->
+        <div class="help-drawer" id="help-drawer">
+            <div class="help-drawer-header">
+                <button class="close-help-btn" id="close-help-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2>Help</h2>
+            </div>
+            <div class="help-drawer-content">
+                <div class="help-section">
+                    <h3>Quick Guide</h3>
+                    <div class="help-item">
+                        <div class="help-icon"><i class="fas fa-search"></i></div>
+                        <div class="help-text">
+                            <h4>Search</h4>
+                            <p>Search for messages, contacts, or files.</p>
+                        </div>
+                    </div>
+                    <div class="help-item">
+                        <div class="help-icon"><i class="fas fa-reply"></i></div>
+                        <div class="help-text">
+                            <h4>Reply to Messages</h4>
+                            <p>Hover over a message and click the reply icon.</p>
+                        </div>
+                    </div>
+                    <div class="help-item">
+                        <div class="help-icon"><i class="fas fa-star"></i></div>
+                        <div class="help-text">
+                            <h4>Favorite Contacts</h4>
+                            <p>Right-click on a contact and select "Move to Favorite".</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="help-section">
+                    <h3>Keyboard Shortcuts</h3>
+                    <div class="shortcut-item">
+                        <div class="shortcut-keys">
+                            <span>Ctrl</span> + <span>F</span>
+                        </div>
+                        <div class="shortcut-desc">Search</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="shortcut-keys">
+                            <span>Ctrl</span> + <span>N</span>
+                        </div>
+                        <div class="shortcut-desc">New Chat</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="shortcut-keys">
+                            <span>Ctrl</span> + <span>G</span>
+                        </div>
+                        <div class="shortcut-desc">New Group</div>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="shortcut-keys">
+                            <span>Esc</span>
+                        </div>
+                        <div class="shortcut-desc">Close current panel</div>
+                    </div>
+                </div>
+                <div class="help-section">
+                    <h3>Documentation</h3>
+                    <a href="#" class="help-link">
+                        <i class="fas fa-book"></i>
+                        <span>User Guide</span>
+                    </a>
+                    <a href="#" class="help-link">
+                        <i class="fas fa-video"></i>
+                        <span>Video Tutorials</span>
+                    </a>
+                    <a href="#" class="help-link">
+                        <i class="fas fa-question-circle"></i>
+                        <span>FAQ</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification Drawer -->
+        <div class="notification-drawer" id="notification-drawer">
+            <div class="notification-drawer-header">
+                <button class="close-notification-btn" id="close-notification-btn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h2>Notifications</h2>
+                <button class="mark-all-read-btn">
+                    <i class="fas fa-check-double"></i>
+                </button>
+            </div>
+            <div class="notification-drawer-content">
+                <div class="notification-tabs">
+                    <button class="notification-tab active">All</button>
+                    <button class="notification-tab">Unread</button>
+                    <button class="notification-tab">Mentions</button>
+                </div>
+                <div class="notification-list">
+                    <div class="notification-item unread">
+                        <div class="notification-avatar">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/MessageContent.jpg-bNTN3Sh7g1SAg496Xv7wdx1Q5OIbTy.jpeg" alt="Bharathi">
+                        </div>
+                        <div class="notification-info">
+                            <div class="notification-title">Bharathi Ragav</div>
+                            <div class="notification-message">Sent you a message</div>
+                            <div class="notification-time">5 minutes ago</div>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="notification-action-btn">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="notification-item unread">
+                        <div class="notification-avatar">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Thamizharan">
+                        </div>
+                        <div class="notification-info">
+                            <div class="notification-title">Thamizharan Raguraman</div>
+                            <div class="notification-message">Mentioned you in a group</div>
+                            <div class="notification-time">1 hour ago</div>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="notification-action-btn">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-avatar">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Senkathir">
+                        </div>
+                        <div class="notification-info">
+                            <div class="notification-title">Senkathir Selvan Selvamani</div>
+                            <div class="notification-message">Shared a file with you</div>
+                            <div class="notification-time">Yesterday</div>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="notification-action-btn">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-avatar">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-4NF0XTn1zkBw2uMu3SduMwOz4JePAk.jpeg" alt="Ethiraj">
+                        </div>
+                        <div class="notification-info">
+                            <div class="notification-title">Ethiraj Bro Sagasoft</div>
+                            <div class="notification-message">Added you to a group</div>
+                            <div class="notification-time">2 days ago</div>
+                        </div>
+                        <div class="notification-actions">
+                            <button class="notification-action-btn">
+                                <i class="fas fa-ellipsis-v"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div class="modal" id="settings-modal">
+            <div class="modal-content settings-content">
+                <div class="modal-header">
+                    <h2>Settings</h2>
+                    <button class="close-modal-btn" id="close-settings-btn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="settings-tabs">
+                        <button class="settings-tab active">General</button>
+                        <button class="settings-tab">Appearance</button>
+                        <button class="settings-tab">Notifications</button>
+                        <button class="settings-tab">Privacy</button>
+                        <button class="settings-tab">Help</button>
+                    </div>
+                    <div class="settings-content">
+                        <div class="settings-section">
+                            <h3>Appearance</h3>
+                            <div class="settings-option">
+                                <span>Dark Mode</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="dark-mode-toggle">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="settings-option">
+                                <span>Font Size</span>
+                                <div class="font-size-options">
+                                    <button class="font-size-option">S</button>
+                                    <button class="font-size-option active">M</button>
+                                    <button class="font-size-option">L</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-section">
+                            <h3>Notifications</h3>
+                            <div class="settings-option">
+                                <span>Sound</span>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="settings-option">
+                                <span>Desktop Notifications</span>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="settings-option">
+                                <span>Preview Messages</span>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="settings-section">
+                            <h3>Privacy</h3>
+                            <div class="settings-option">
+                                <span>Read Receipts</span>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="settings-option">
+                                <span>Last Seen</span>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="settings-option">
+                                <span>Profile Photo</span>
+                                <select class="settings-select">
+                                    <option>Everyone</option>
+                                    <option>Contacts</option>
+                                    <option>Nobody</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call Modal -->
+        <div class="modal" id="call-modal">
+            <div class="modal-content call-content">
+                <div class="call-header">
+                    <div class="call-type" id="call-type">Video Call</div>
+                    <div class="call-status" id="call-status">Calling...</div>
+                </div>
+                <div class="call-body">
+                    <div class="call-avatar">
+                        <img id="call-avatar" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/MessageContent.jpg-bNTN3Sh7g1SAg496Xv7wdx1Q5OIbTy.jpeg" alt="Contact">
+                    </div>
+                    <div class="call-name" id="call-name">Bharathi Ragav</div>
+                    <div class="call-duration" id="call-duration">00:00</div>
+                </div>
+                <div class="call-actions">
+                    <button class="call-action-btn mute-btn" id="mute-btn">
+                        <i class="fas fa-microphone-slash"></i>
+                    </button>
+                    <button class="call-action-btn video-btn" id="toggle-video-btn">
+                        <i class="fas fa-video-slash"></i>
+                    </button>
+                    <button class="call-action-btn end-call-btn" id="end-call-btn">
+                        <i class="fas fa-phone-slash"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- File Input (Hidden) -->
+        <input type="file" id="file-input" style="display: none;">
+
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Mobile Actions Button -->
+        <button class="mobile-actions-btn" id="mobile-actions-btn">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

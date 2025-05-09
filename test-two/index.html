@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saga Chat</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Vertical Sidebar -->
+        <div class="vertical-sidebar">
+            <div class="vertical-sidebar-top">
+                <a href="#" class="vertical-sidebar-icon active"><i class="fas fa-home"></i></a>
+                <a href="#" class="vertical-sidebar-icon"><i class="fas fa-comment"></i></a>
+                <a href="#" class="vertical-sidebar-icon"><i class="fas fa-envelope"></i></a>
+                <a href="#" class="vertical-sidebar-icon"><i class="fas fa-calendar"></i></a>
+                <a href="#" class="vertical-sidebar-icon"><i class="fas fa-folder"></i></a>
+            </div>
+            <div class="vertical-sidebar-bottom">
+                <a href="#" class="vertical-sidebar-icon profile-icon" id="my-profile-btn">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Profile" class="avatar-img small">
+                </a>
+                <a href="#" class="vertical-sidebar-icon" id="logout-btn"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Top Navigation Bar -->
+            <header class="top-nav">
+                <div class="logo">
+                    <i class="fas fa-comment-dots logo-icon"></i>
+                    <span class="logo-text"><span class="logo-saga">Saga</span> <span class="logo-chat">Chat</span></span>
+                </div>
+                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="nav-tabs-container">
+                    <div class="nav-tabs">
+                        <a href="#" class="nav-tab active" data-tab="unread"><i class="fas fa-envelope"></i> Unread</a>
+                        <a href="#" class="nav-tab" data-tab="chats"><i class="fas fa-comment"></i> Chats</a>
+                        <a href="#" class="nav-tab" data-tab="group-chats"><i class="fas fa-users"></i> Group chats</a>
+                        <a href="#" class="nav-tab" data-tab="meeting-chats"><i class="fas fa-video"></i> Meeting chats</a>
+                        <a href="#" class="nav-tab" data-tab="file-chats"><i class="fas fa-file"></i> File chats</a>
+                        <a href="#" class="nav-tab" id="collapse-all-btn"><i class="fas fa-compress-alt"></i> Collapse all section</a>
+                    </div>
+                </div>
+                <div class="nav-right">
+                    <div class="search-container" id="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Search">
+                    </div>
+                    <div class="dropdown">
+                        <a href="#" class="nav-icon dropdown-toggle" id="new-items-dropdown">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                        <div class="dropdown-menu" id="new-items-menu">
+                            <a href="#" class="dropdown-item" id="new-message-btn"><i class="fas fa-comment"></i> New Message</a>
+                            <a href="#" class="dropdown-item" id="new-group-btn"><i class="fas fa-users"></i> New Group</a>
+                            <a href="#" class="dropdown-item" id="new-section-btn"><i class="fas fa-folder"></i> New Section</a>
+                        </div>
+                    </div>
+                    <a href="#" class="nav-icon" id="notifications-btn"><i class="fas fa-bell"></i></a>
+                    <a href="#" class="nav-icon" id="help-btn"><i class="fas fa-question-circle"></i></a>
+                    <a href="#" class="nav-icon" id="settings-btn"><i class="fas fa-cog"></i></a>
+                </div>
+            </header>
+
+            <!-- Chat Content Area -->
+            <div class="chat-container">
+                <!-- Chat Sidebar -->
+                <div class="chat-sidebar" id="chat-sidebar">
+                    <div class="sidebar-header">
+                        <button class="sidebar-close" id="sidebar-close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- Favorites Section -->
+                    <div class="chat-section" data-section="favorites">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <i class="fas fa-star"></i>
+                                <span class="section-name">Favorites</span>
+                            </div>
+                            <div class="section-actions">
+                                <button class="section-toggle"><i class="fas fa-chevron-down"></i></button>
+                                <div class="dropdown">
+                                    <button class="section-more dropdown-toggle"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown-menu section-dropdown-menu">
+                                        <a href="#" class="dropdown-item rename-section-btn"><i class="fas fa-edit"></i> Rename Section</a>
+                                        <a href="#" class="dropdown-item hide-section-btn"><i class="fas fa-eye-slash"></i> Hide Section</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-list">
+                            <div class="chat-item" data-user-id="1">
+                                <div class="chat-avatar">
+                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img">
+                                </div>
+                                <div class="chat-info">
+                                    <div class="chat-name">Bharathi Ragav</div>
+                                    <div class="chat-message">Hi! Why did you call?</div>
+                                </div>
+                                <div class="chat-actions">
+                                    <div class="dropdown">
+                                        <button class="chat-more dropdown-toggle"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-menu chat-dropdown-menu">
+                                            <a href="#" class="dropdown-item move-chat-btn"><i class="fas fa-exchange-alt"></i> Move to</a>
+                                            <a href="#" class="dropdown-item mute-chat-btn"><i class="fas fa-bell-slash"></i> Mute</a>
+                                            <a href="#" class="dropdown-item pin-chat-btn"><i class="fas fa-thumbtack"></i> Pin</a>
+                                            <a href="#" class="dropdown-item remove-section-btn"><i class="fas fa-minus-circle"></i> Remove from section</a>
+                                            <a href="#" class="dropdown-item delete-chat-btn"><i class="fas fa-trash"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-item" data-user-id="2">
+                                <div class="chat-avatar">
+                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Thamizharan Raguraman" class="avatar-img">
+                                </div>
+                                <div class="chat-info">
+                                    <div class="chat-name">Thamizharan Raguraman</div>
+                                    <div class="chat-message">This is a Figma Community file. Community is a...</div>
+                                </div>
+                                <div class="chat-actions">
+                                    <div class="dropdown">
+                                        <button class="chat-more dropdown-toggle"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-menu chat-dropdown-menu">
+                                            <a href="#" class="dropdown-item move-chat-btn"><i class="fas fa-exchange-alt"></i> Move to</a>
+                                            <a href="#" class="dropdown-item mute-chat-btn"><i class="fas fa-bell-slash"></i> Mute</a>
+                                            <a href="#" class="dropdown-item pin-chat-btn"><i class="fas fa-thumbtack"></i> Pin</a>
+                                            <a href="#" class="dropdown-item remove-section-btn"><i class="fas fa-minus-circle"></i> Remove from section</a>
+                                            <a href="#" class="dropdown-item delete-chat-btn"><i class="fas fa-trash"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Important Section -->
+                    <div class="chat-section" data-section="important">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <span class="section-name">Important</span>
+                            </div>
+                            <div class="section-actions">
+                                <button class="section-toggle"><i class="fas fa-chevron-down"></i></button>
+                                <div class="dropdown">
+                                    <button class="section-more dropdown-toggle"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown-menu section-dropdown-menu">
+                                        <a href="#" class="dropdown-item rename-section-btn"><i class="fas fa-edit"></i> Rename Section</a>
+                                        <a href="#" class="dropdown-item hide-section-btn"><i class="fas fa-eye-slash"></i> Hide Section</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-list">
+                            <div class="chat-item" data-user-id="3">
+                                <div class="chat-avatar">
+                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Janani Radhakrishan Sagasoft" class="avatar-img">
+                                </div>
+                                <div class="chat-info">
+                                    <div class="chat-name">Janani Radhakrishan</div>
+                                    <div class="chat-message">Hi guys! I've added my wireframe ideas to the...</div>
+                                </div>
+                                <div class="chat-actions">
+                                    <div class="dropdown">
+                                        <button class="chat-more dropdown-toggle"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-menu chat-dropdown-menu">
+                                            <a href="#" class="dropdown-item move-chat-btn"><i class="fas fa-exchange-alt"></i> Move to</a>
+                                            <a href="#" class="dropdown-item mute-chat-btn"><i class="fas fa-bell-slash"></i> Mute</a>
+                                            <a href="#" class="dropdown-item pin-chat-btn"><i class="fas fa-thumbtack"></i> Pin</a>
+                                            <a href="#" class="dropdown-item remove-section-btn"><i class="fas fa-minus-circle"></i> Remove from section</a>
+                                            <a href="#" class="dropdown-item delete-chat-btn"><i class="fas fa-trash"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-item unread" data-user-id="4">
+                                <div class="chat-avatar">
+                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Senkathir Selvan Selvamani" class="avatar-img">
+                                </div>
+                                <div class="chat-info">
+                                    <div class="chat-name">Senkathir Selvan</div>
+                                    <div class="chat-message">Awesome, I'll check it out. Thanks Thamizh!</div>
+                                </div>
+                                <div class="chat-actions">
+                                    <div class="dropdown">
+                                        <button class="chat-more dropdown-toggle"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-menu chat-dropdown-menu">
+                                            <a href="#" class="dropdown-item move-chat-btn"><i class="fas fa-exchange-alt"></i> Move to</a>
+                                            <a href="#" class="dropdown-item mute-chat-btn"><i class="fas fa-bell-slash"></i> Mute</a>
+                                            <a href="#" class="dropdown-item pin-chat-btn"><i class="fas fa-thumbtack"></i> Pin</a>
+                                            <a href="#" class="dropdown-item remove-section-btn"><i class="fas fa-minus-circle"></i> Remove from section</a>
+                                            <a href="#" class="dropdown-item delete-chat-btn"><i class="fas fa-trash"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chats Section -->
+                    <div class="chat-section" data-section="chats">
+                        <div class="section-header">
+                            <div class="section-title">
+                                <i class="fas fa-comment"></i>
+                                <span class="section-name">Chats</span>
+                            </div>
+                            <div class="section-actions">
+                                <button class="section-toggle"><i class="fas fa-chevron-down"></i></button>
+                                <div class="dropdown">
+                                    <button class="section-more dropdown-toggle"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown-menu section-dropdown-menu">
+                                        <a href="#" class="dropdown-item rename-section-btn"><i class="fas fa-edit"></i> Rename Section</a>
+                                        <a href="#" class="dropdown-item hide-section-btn"><i class="fas fa-eye-slash"></i> Hide Section</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-list">
+                            <div class="chat-item" data-user-id="5">
+                                <div class="chat-avatar">
+                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Ethiraj Bro Sagasoft" class="avatar-img">
+                                </div>
+                                <div class="chat-info">
+                                    <div class="chat-name">Ethiraj Bro</div>
+                                    <div class="chat-message">Almost ready, just finishing a few points.</div>
+                                </div>
+                                <div class="chat-actions">
+                                    <div class="dropdown">
+                                        <button class="chat-more dropdown-toggle"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-menu chat-dropdown-menu">
+                                            <a href="#" class="dropdown-item move-chat-btn"><i class="fas fa-exchange-alt"></i> Move to</a>
+                                            <a href="#" class="dropdown-item mute-chat-btn"><i class="fas fa-bell-slash"></i> Mute</a>
+                                            <a href="#" class="dropdown-item pin-chat-btn"><i class="fas fa-thumbtack"></i> Pin</a>
+                                            <a href="#" class="dropdown-item delete-chat-btn"><i class="fas fa-trash"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-item unread" data-user-id="6">
+                                <div class="chat-avatar">
+                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Vasanth Kumar Sivamani" class="avatar-img">
+                                </div>
+                                <div class="chat-info">
+                                    <div class="chat-name">Vasanth Kumar</div>
+                                    <div class="chat-message">Cool, let's hop on a quick call in 10 mins?</div>
+                                </div>
+                                <div class="chat-actions">
+                                    <div class="dropdown">
+                                        <button class="chat-more dropdown-toggle"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-menu chat-dropdown-menu">
+                                            <a href="#" class="dropdown-item move-chat-btn"><i class="fas fa-exchange-alt"></i> Move to</a>
+                                            <a href="#" class="dropdown-item mute-chat-btn"><i class="fas fa-bell-slash"></i> Mute</a>
+                                            <a href="#" class="dropdown-item pin-chat-btn"><i class="fas fa-thumbtack"></i> Pin</a>
+                                            <a href="#" class="dropdown-item delete-chat-btn"><i class="fas fa-trash"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-item" data-user-id="7">
+                                <div class="chat-avatar">
+                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Punitha senthil" class="avatar-img">
+                                </div>
+                                <div class="chat-info">
+                                    <div class="chat-name">Punitha Senthil</div>
+                                    <div class="chat-message">This is a Figma Community file.Community is a...</div>
+                                </div>
+                                <div class="chat-actions">
+                                    <div class="dropdown">
+                                        <button class="chat-more dropdown-toggle"><i class="fas fa-ellipsis-v"></i></button>
+                                        <div class="dropdown-menu chat-dropdown-menu">
+                                            <a href="#" class="dropdown-item move-chat-btn"><i class="fas fa-exchange-alt"></i> Move to</a>
+                                            <a href="#" class="dropdown-item mute-chat-btn"><i class="fas fa-bell-slash"></i> Mute</a>
+                                            <a href="#" class="dropdown-item pin-chat-btn"><i class="fas fa-thumbtack"></i> Pin</a>
+                                            <a href="#" class="dropdown-item delete-chat-btn"><i class="fas fa-trash"></i> Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="see-more">
+                                <a href="#">See more...</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Content
+                <div class="chat-content" id="empty-state">
+                    <div class="empty-state">
+                        <div class="empty-state-image">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-RamfTHhd2dkxNWIvvzYp6hkJhBFmNl.jpeg" alt="Start messaging">
+                        </div>
+                        <h2>Start Messages</h2>
+                        <p>Welcome to Saga chat</p>
+                    </div>
+                </div> -->
+
+                <!-- Active Chat Content (Hidden by default) -->
+                <div class="chat-content hidden" id="active-chat">
+                    <div class="chat-header">
+                        <div class="chat-header-left">
+                            <button class="back-button" id="back-to-chats"><i class="fas fa-arrow-left"></i></button>
+                            <div class="chat-avatar user-profile-trigger">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img">
+                            </div>
+                            <div class="chat-header-info user-profile-trigger">
+                                <div class="chat-header-name">Bharathi Ragav</div>
+                                <div class="chat-header-status">Online</div>
+                            </div>
+                        </div>
+                        <div class="chat-header-actions">
+                            <button class="chat-header-btn" id="voice-call-btn"><i class="fas fa-phone"></i></button>
+                            <button class="chat-header-btn" id="video-call-btn"><i class="fas fa-video"></i></button>
+                            <div class="dropdown">
+                                <button class="chat-header-btn dropdown-toggle"><i class="fas fa-ellipsis-v"></i></button>
+                                <div class="dropdown-menu chat-header-dropdown-menu">
+                                    <a href="#" class="dropdown-item"><i class="fas fa-search"></i> Search</a>
+                                    <a href="#" class="dropdown-item"><i class="fas fa-bell-slash"></i> Mute notifications</a>
+                                    <a href="#" class="dropdown-item"><i class="fas fa-trash"></i> Clear chat</a>
+                                    <a href="#" class="dropdown-item"><i class="fas fa-ban"></i> Block</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pinned Messages -->
+                    <div class="pinned-messages" id="pinned-messages">
+                        <div class="pinned-header">
+                            <i class="fas fa-thumbtack"></i>
+                            <span>Pinned Messages</span>
+                            <button class="pinned-toggle"><i class="fas fa-chevron-down"></i></button>
+                        </div>
+                        <div class="pinned-content">
+                            <div class="pinned-message">
+                                <div class="pinned-message-content">
+                                    <p>Meeting at 3 PM tomorrow</p>
+                                </div>
+                                <button class="unpin-btn"><i class="fas fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="messages-container">
+                        <div class="message-time-divider">Today</div>
+                        <div class="message outgoing" data-message-id="1">
+                            <div class="message-content">
+                                <p>Hey Grace, how's it going?</p>
+                                <div class="message-time">06:20</div>
+                                <div class="message-actions-menu">
+                                    <button class="message-action-btn reply-btn"><i class="fas fa-reply"></i></button>
+                                    <button class="message-action-btn forward-btn"><i class="fas fa-share"></i></button>
+                                    <button class="message-action-btn pin-btn"><i class="fas fa-thumbtack"></i></button>
+                                    <button class="message-action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message incoming" data-message-id="2">
+                            <div class="message-avatar user-profile-trigger">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img small">
+                            </div>
+                            <div class="message-content">
+                                <div class="message-sender">Bharathi Ragav</div>
+                                <p>Hi Jack! I'm doing well, thanks. Can't wait for the weekend!</p>
+                                <div class="message-time">06:20</div>
+                                <div class="message-actions-menu">
+                                    <button class="message-action-btn reply-btn"><i class="fas fa-reply"></i></button>
+                                    <button class="message-action-btn forward-btn"><i class="fas fa-share"></i></button>
+                                    <button class="message-action-btn pin-btn"><i class="fas fa-thumbtack"></i></button>
+                                    <button class="message-action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message incoming with-file" data-message-id="3">
+                            <div class="message-avatar user-profile-trigger">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img small">
+                            </div>
+                            <div class="message-content">
+                                <div class="message-sender">Bharathi Ragav</div>
+                                <p>Check out this image I found!</p>
+                                <div class="message-file image">
+                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-RamfTHhd2dkxNWIvvzYp6hkJhBFmNl.jpeg" alt="Shared image">
+                                </div>
+                                <div class="message-time">06:20</div>
+                                <div class="message-actions-menu">
+                                    <button class="message-action-btn reply-btn"><i class="fas fa-reply"></i></button>
+                                    <button class="message-action-btn forward-btn"><i class="fas fa-share"></i></button>
+                                    <button class="message-action-btn pin-btn"><i class="fas fa-thumbtack"></i></button>
+                                    <button class="message-action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message incoming with-file" data-message-id="4">
+                            <div class="message-avatar user-profile-trigger">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img small">
+                            </div>
+                            <div class="message-content">
+                                <div class="message-sender">Bharathi Ragav</div>
+                                <p>And here's the document we discussed:</p>
+                                <div class="message-file document">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <span>Project_Proposal.pdf</span>
+                                    <button class="file-download-btn"><i class="fas fa-download"></i></button>
+                                </div>
+                                <div class="message-time">06:21</div>
+                                <div class="message-actions-menu">
+                                    <button class="message-action-btn reply-btn"><i class="fas fa-reply"></i></button>
+                                    <button class="message-action-btn forward-btn"><i class="fas fa-share"></i></button>
+                                    <button class="message-action-btn pin-btn"><i class="fas fa-thumbtack"></i></button>
+                                    <button class="message-action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message incoming with-file" data-message-id="5">
+                            <div class="message-avatar user-profile-trigger">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img small">
+                            </div>
+                            <div class="message-content">
+                                <div class="message-sender">Bharathi Ragav</div>
+                                <div class="message-file audio">
+                                    <i class="fas fa-microphone"></i>
+                                    <div class="audio-player">
+                                        <button class="audio-play-btn"><i class="fas fa-play"></i></button>
+                                        <div class="audio-progress">
+                                            <div class="audio-progress-bar"></div>
+                                        </div>
+                                        <span class="audio-duration">0:12</span>
+                                    </div>
+                                </div>
+                                <div class="message-time">06:22</div>
+                                <div class="message-actions-menu">
+                                    <button class="message-action-btn reply-btn"><i class="fas fa-reply"></i></button>
+                                    <button class="message-action-btn forward-btn"><i class="fas fa-share"></i></button>
+                                    <button class="message-action-btn pin-btn"><i class="fas fa-thumbtack"></i></button>
+                                    <button class="message-action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message outgoing" data-message-id="6">
+                            <div class="message-content">
+                                <p>I know, right? Weekend plans are the best. Any exciting plans on your end?</p>
+                                <div class="message-time">06:21</div>
+                                <div class="message-actions-menu">
+                                    <button class="message-action-btn reply-btn"><i class="fas fa-reply"></i></button>
+                                    <button class="message-action-btn forward-btn"><i class="fas fa-share"></i></button>
+                                    <button class="message-action-btn pin-btn"><i class="fas fa-thumbtack"></i></button>
+                                    <button class="message-action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message incoming" data-message-id="7">
+                            <div class="message-avatar user-profile-trigger">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img small">
+                            </div>
+                            <div class="message-content">
+                                <div class="message-sender">Bharathi Ragav</div>
+                                <p>I'm thinking of going for a hike on Saturday. How about you?</p>
+                                <div class="message-time">06:21</div>
+                                <div class="message-actions-menu">
+                                    <button class="message-action-btn reply-btn"><i class="fas fa-reply"></i></button>
+                                    <button class="message-action-btn forward-btn"><i class="fas fa-share"></i></button>
+                                    <button class="message-action-btn pin-btn"><i class="fas fa-thumbtack"></i></button>
+                                    <button class="message-action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message outgoing" data-message-id="8">
+                            <div class="message-content">
+                                <p>Can't wait for the weekend!</p>
+                                <div class="message-time">06:21</div>
+                                <div class="message-actions-menu">
+                                    <button class="message-action-btn reply-btn"><i class="fas fa-reply"></i></button>
+                                    <button class="message-action-btn forward-btn"><i class="fas fa-share"></i></button>
+                                    <button class="message-action-btn pin-btn"><i class="fas fa-thumbtack"></i></button>
+                                    <button class="message-action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Reply Message Area -->
+                        <div class="reply-message-area hidden" id="reply-message-area">
+                            <div class="reply-message-content">
+                                <div class="reply-message-text">I'm thinking of going for a hike on Saturday. How about you?</div>
+                                <div class="reply-message-sender">Bharathi Ragav</div>
+                            </div>
+                            <button class="reply-close-btn"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="message-input-container">
+                        <button class="message-input-btn file-upload-btn" id="file-upload-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <div class="message-input-wrapper">
+                            <button class="message-input-btn emoji-btn" id="emoji-btn">
+                                <i class="far fa-smile"></i>
+                            </button>
+                            <input type="text" class="message-input" placeholder="Type message...">
+                            <button class="message-input-btn voice-btn" id="voice-btn">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                        </div>
+                        <button class="message-input-btn send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- User Profile View (Hidden by default) -->
+                <div class="user-profile hidden" id="user-profile">
+                    <div class="user-profile-header">
+                        <button class="back-button" id="back-from-profile"><i class="fas fa-arrow-left"></i></button>
+                        <h2>Contact Info</h2>
+                    </div>
+                    <div class="user-profile-content">
+                        <div class="user-profile-banner"></div>
+                        <div class="user-profile-avatar">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img large">
+                        </div>
+                        <div class="user-profile-name">Bharathi Ragav</div>
+                        <div class="user-profile-status">Online</div>
+                        <div class="user-profile-actions">
+                            <button class="user-profile-btn"><i class="fas fa-phone"></i></button>
+                            <button class="user-profile-btn"><i class="fas fa-video"></i></button>
+                            <button class="user-profile-btn"><i class="fas fa-search"></i></button>
+                            <button class="user-profile-btn"><i class="fas fa-bell-slash"></i></button>
+                        </div>
+                        <div class="user-profile-info">
+                            <div class="user-profile-section">
+                                <h3>About</h3>
+                                <p>Hey there! I'm using Saga Chat</p>
+                            </div>
+                            <div class="user-profile-section">
+                                <h3>Phone</h3>
+                                <p>+91 98765 43210</p>
+                            </div>
+                            <div class="user-profile-section">
+                                <h3>Email</h3>
+                                <p>bharathi.ragav@example.com</p>
+                            </div>
+                            <div class="user-profile-section">
+                                <h3>Media, Links and Docs</h3>
+                                <div class="user-profile-media">
+                                    <div class="media-item">
+                                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/All.jpg-RamfTHhd2dkxNWIvvzYp6hkJhBFmNl.jpeg" alt="Media">
+                                    </div>
+                                    <div class="media-item">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </div>
+                                    <div class="media-item">
+                                        <i class="fas fa-music"></i>
+                                    </div>
+                                    <div class="see-all">
+                                        <span>See All</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="user-profile-section">
+                                <h3>Mute Notifications</h3>
+                                <label class="toggle">
+                                    <input type="checkbox">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="user-profile-section">
+                                <button class="btn-danger">Block Contact</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals and Panels -->
+    <!-- Settings Modal -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-tabs">
+                    <button class="settings-tab active">General</button>
+                    <button class="settings-tab">Appearance</button>
+                    <button class="settings-tab">Notifications</button>
+                    <button class="settings-tab">Privacy</button>
+                </div>
+                <div class="settings-content">
+                    <div class="settings-section">
+                        <h3>Theme</h3>
+                        <div class="settings-item">
+                            <span>Dark Mode</span>
+                            <label class="toggle">
+                                <input type="checkbox" id="dark-mode-toggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="settings-section">
+                        <h3>Account</h3>
+                        <div class="settings-item">
+                            <span>Profile</span>
+                            <button class="settings-btn">Edit</button>
+                        </div>
+                        <div class="settings-item">
+                            <span>Email</span>
+                            <button class="settings-btn">Change</button>
+                        </div>
+                        <div class="settings-item">
+                            <span>Password</span>
+                            <button class="settings-btn">Change</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Panel -->
+    <div class="side-panel" id="help-panel">
+        <div class="side-panel-header">
+            <h2>Help</h2>
+            <button class="side-panel-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="side-panel-body">
+            <div class="help-section">
+                <h3>Basic App Features</h3>
+                <ul class="help-list">
+                    <li><a href="#">How to create a new chat</a></li>
+                    <li><a href="#">Creating and managing groups</a></li>
+                    <li><a href="#">Managing sections and favorites</a></li>
+                    <li><a href="#">Voice and video calls</a></li>
+                </ul>
+            </div>
+            <div class="help-section">
+                <h3>File Upload Support</h3>
+                <ul class="help-list">
+                    <li><a href="#">Supported file types</a></li>
+                    <li><a href="#">Sharing images and videos</a></li>
+                    <li><a href="#">Sending documents</a></li>
+                    <li><a href="#">Voice messages</a></li>
+                </ul>
+            </div>
+            <div class="help-section">
+                <h3>User Guide</h3>
+                <ul class="help-list">
+                    <li><a href="#">Getting started with Saga Chat</a></li>
+                    <li><a href="#">Privacy and security</a></li>
+                    <li><a href="#">Keyboard shortcuts</a></li>
+                    <li><a href="#">Frequently asked questions</a></li>
+                </ul>
+            </div>
+            <div class="help-section">
+                <h3>Contact Support</h3>
+                <button class="btn-primary">Contact Us</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications Panel -->
+    <div class="side-panel" id="notifications-panel">
+        <div class="side-panel-header">
+            <h2>Notifications</h2>
+            <button class="side-panel-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="side-panel-body">
+            <div class="notifications-list">
+                <div class="notification-item unread">
+                    <div class="notification-avatar">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-text"><strong>Bharathi Ragav</strong> sent you a message</div>
+                        <div class="notification-time">5 min ago</div>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Senkathir Selvan" class="avatar-img">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-text"><strong>Senkathir Selvan</strong> mentioned you in a group</div>
+                        <div class="notification-time">1 hour ago</div>
+                    </div>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-avatar">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Thamizharan" class="avatar-img">
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-text"><strong>Thamizharan</strong> shared a file with you</div>
+                        <div class="notification-time">Yesterday</div>
+                    </div>
+                </div>
+            </div>
+            <div class="notification-settings">
+                <button class="btn-text">Mark all as read</button>
+                <button class="btn-text">Notification settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- File Upload Menu -->
+    <div class="dropdown-menu" id="file-upload-menu">
+        <a href="#" class="dropdown-item" data-type="image"><i class="fas fa-image"></i> Image</a>
+        <a href="#" class="dropdown-item" data-type="video"><i class="fas fa-video"></i> Video</a>
+        <a href="#" class="dropdown-item" data-type="audio"><i class="fas fa-music"></i> Audio</a>
+        <a href="#" class="dropdown-item" data-type="document"><i class="fas fa-file-alt"></i> Document</a>
+        <a href="#" class="dropdown-item" data-type="other"><i class="fas fa-paperclip"></i> Other Files</a>
+    </div>
+
+    <!-- Emoji Picker -->
+    <div class="emoji-picker" id="emoji-picker">
+        <div class="emoji-picker-header">
+            <div class="emoji-categories">
+                <button class="emoji-category active" data-category="recent"><i class="far fa-clock"></i></button>
+                <button class="emoji-category" data-category="smileys"><i class="far fa-smile"></i></button>
+                <button class="emoji-category" data-category="people"><i class="far fa-user"></i></button>
+                <button class="emoji-category" data-category="animals"><i class="fas fa-paw"></i></button>
+                <button class="emoji-category" data-category="food"><i class="fas fa-pizza-slice"></i></button>
+                <button class="emoji-category" data-category="travel"><i class="fas fa-plane"></i></button>
+                <button class="emoji-category" data-category="activities"><i class="fas fa-futbol"></i></button>
+                <button class="emoji-category" data-category="objects"><i class="fas fa-lightbulb"></i></button>
+                <button class="emoji-category" data-category="symbols"><i class="fas fa-hashtag"></i></button>
+                <button class="emoji-category" data-category="flags"><i class="fas fa-flag"></i></button>
+            </div>
+            <button class="emoji-picker-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="emoji-search">
+            <input type="text" placeholder="Search emojis">
+        </div>
+        <div class="emoji-grid">
+            <!-- Emojis will be populated here -->
+            <button class="emoji">😀</button>
+            <button class="emoji">😃</button>
+            <button class="emoji">😄</button>
+            <button class="emoji">😁</button>
+            <button class="emoji">😆</button>
+            <button class="emoji">😅</button>
+            <button class="emoji">😂</button>
+            <button class="emoji">🤣</button>
+            <button class="emoji">😊</button>
+            <button class="emoji">😇</button>
+            <button class="emoji">🙂</button>
+            <button class="emoji">🙃</button>
+            <button class="emoji">😉</button>
+            <button class="emoji">😌</button>
+            <button class="emoji">😍</button>
+            <button class="emoji">🥰</button>
+            <button class="emoji">😘</button>
+            <button class="emoji">😗</button>
+            <button class="emoji">😙</button>
+            <button class="emoji">😚</button>
+            <button class="emoji">😋</button>
+            <button class="emoji">😛</button>
+            <button class="emoji">😝</button>
+            <button class="emoji">😜</button>
+            <button class="emoji">🤪</button>
+            <button class="emoji">🤨</button>
+            <button class="emoji">🧐</button>
+            <button class="emoji">🤓</button>
+            <button class="emoji">😎</button>
+            <button class="emoji">🤩</button>
+            <button class="emoji">🥳</button>
+            <button class="emoji">😏</button>
+            <button class="emoji">😒</button>
+            <button class="emoji">😞</button>
+            <button class="emoji">😔</button>
+            <button class="emoji">😟</button>
+            <button class="emoji">😕</button>
+            <button class="emoji">🙁</button>
+            <button class="emoji">☹️</button>
+            <button class="emoji">😣</button>
+            <button class="emoji">😖</button>
+            <button class="emoji">😫</button>
+            <button class="emoji">😩</button>
+            <button class="emoji">🥺</button>
+            <button class="emoji">😢</button>
+            <button class="emoji">😭</button>
+            <button class="emoji">😤</button>
+            <button class="emoji">😠</button>
+            <button class="emoji">😡</button>
+            <button class="emoji">🤬</button>
+            <button class="emoji">🤯</button>
+        </div>
+    </div>
+
+    <!-- Voice Recording Panel -->
+    <div class="voice-recording-panel" id="voice-recording-panel">
+        <div class="voice-recording-header">
+            <h3>Voice Message</h3>
+            <button class="voice-recording-close"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="voice-recording-body">
+            <div class="voice-recording-waveform">
+                <div class="waveform-bars">
+                    <div class="waveform-bar"></div>
+                    <div class="waveform-bar"></div>
+                    <div class="waveform-bar"></div>
+                    <div class="waveform-bar"></div>
+                    <div class="waveform-bar"></div>
+                    <div class="waveform-bar"></div>
+                    <div class="waveform-bar"></div>
+                    <div class="waveform-bar"></div>
+                </div>
+            </div>
+            <div class="voice-recording-timer">00:00</div>
+            <div class="voice-recording-controls">
+                <button class="voice-recording-btn cancel-btn"><i class="fas fa-trash"></i></button>
+                <button class="voice-recording-btn record-btn"><i class="fas fa-microphone"></i></button>
+                <button class="voice-recording-btn send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Reaction Panel -->
+    <div class="message-reaction-panel" id="message-reaction-panel">
+        <button class="reaction-emoji">👍</button>
+        <button class="reaction-emoji">❤️</button>
+        <button class="reaction-emoji">😂</button>
+        <button class="reaction-emoji">😮</button>
+        <button class="reaction-emoji">😢</button>
+        <button class="reaction-emoji">🙏</button>
+        <button class="reaction-emoji-more"><i class="fas fa-plus"></i></button>
+    </div>
+
+    <!-- File Preview Modal -->
+    <div class="modal" id="file-preview-modal">
+        <div class="modal-content file-preview-content">
+            <div class="modal-header">
+                <h2 id="file-preview-title">File Preview</h2>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body file-preview-body">
+                <div class="file-preview-container" id="file-preview-container">
+                    <!-- File preview will be inserted here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="file-preview-download">Download</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Message Modal -->
+    <div class="modal" id="delete-message-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Delete Message</h2>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this message?</p>
+                <div class="delete-options">
+                    <button class="btn-secondary" id="delete-for-me-btn">Delete for me</button>
+                    <button class="btn-danger" id="delete-for-everyone-btn">Delete for everyone</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forward Message Modal -->
+    <div class="modal" id="forward-message-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Forward Message</h2>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search contacts">
+                </div>
+                <div class="contacts-list">
+                    <div class="contact-item">
+                        <div class="contact-avatar">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img">
+                        </div>
+                        <div class="contact-name">Bharathi Ragav</div>
+                        <div class="contact-checkbox">
+                            <input type="checkbox" id="contact-1">
+                            <label for="contact-1"></label>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-avatar">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Thamizharan Raguraman" class="avatar-img">
+                        </div>
+                        <div class="contact-name">Thamizharan Raguraman</div>
+                        <div class="contact-checkbox">
+                            <input type="checkbox" id="contact-2">
+                            <label for="contact-2"></label>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-avatar">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Senkathir Selvan" class="avatar-img">
+                        </div>
+                        <div class="contact-name">Senkathir Selvan</div>
+                        <div class="contact-checkbox">
+                            <input type="checkbox" id="contact-3">
+                            <label for="contact-3"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" id="forward-btn">Forward</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Section Modal -->
+    <div class="modal" id="new-section-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>New Section</h2>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="section-name">Section Name</label>
+                    <input type="text" id="section-name" placeholder="Enter section name">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close">Cancel</button>
+                <button class="btn-primary" id="create-section-btn">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Group Modal -->
+    <div class="modal" id="new-group-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>New Group</h2>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="group-name">Group Name</label>
+                    <input type="text" id="group-name" placeholder="Enter group name">
+                </div>
+                <div class="form-group">
+                    <label>Select Participants</label>
+                    <div class="search-container">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" class="search-input" placeholder="Search contacts">
+                    </div>
+                    <div class="contacts-list">
+                        <div class="contact-item">
+                            <div class="contact-avatar">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img">
+                            </div>
+                            <div class="contact-name">Bharathi Ragav</div>
+                            <div class="contact-checkbox">
+                                <input type="checkbox" id="group-contact-1">
+                                <label for="group-contact-1"></label>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-avatar">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Thamizharan Raguraman" class="avatar-img">
+                            </div>
+                            <div class="contact-name">Thamizharan Raguraman</div>
+                            <div class="contact-checkbox">
+                                <input type="checkbox" id="group-contact-2">
+                                <label for="group-contact-2"></label>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-avatar">
+                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Senkathir Selvan" class="avatar-img">
+                            </div>
+                            <div class="contact-name">Senkathir Selvan</div>
+                            <div class="contact-checkbox">
+                                <input type="checkbox" id="group-contact-3">
+                                <label for="group-contact-3"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close">Cancel</button>
+                <button class="btn-primary" id="create-group-btn">Create</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Message Modal -->
+    <div class="modal" id="new-message-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>New Message</h2>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search contacts">
+                </div>
+                <div class="contacts-list">
+                    <div class="contact-item">
+                        <div class="contact-avatar">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img">
+                        </div>
+                        <div class="contact-name">Bharathi Ragav</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-avatar">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Thamizharan Raguraman" class="avatar-img">
+                        </div>
+                        <div class="contact-name">Thamizharan Raguraman</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-avatar">
+                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Senkathir Selvan" class="avatar-img">
+                        </div>
+                        <div class="contact-name">Senkathir Selvan</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rename Section Modal -->
+    <div class="modal" id="rename-section-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Rename Section</h2>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="rename-section-input">Section Name</label>
+                    <input type="text" id="rename-section-input" placeholder="Enter new section name">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close">Cancel</button>
+                <button class="btn-primary" id="save-section-name-btn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Move Chat Modal -->
+    <div class="modal" id="move-chat-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Move to Section</h2>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="section-list">
+                    <div class="section-item">
+                        <i class="fas fa-star"></i>
+                        <span>Favorites</span>
+                    </div>
+                    <div class="section-item">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span>Important</span>
+                    </div>
+                    <div class="section-item">
+                        <i class="fas fa-comment"></i>
+                        <span>Chats</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call Modal -->
+    <div class="modal" id="call-modal">
+        <div class="modal-content call-content">
+            <div class="call-header">
+                <div class="call-avatar">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img">
+                </div>
+                <div class="call-name">Bharathi Ragav</div>
+                <div class="call-status">Calling...</div>
+            </div>
+            <div class="call-actions">
+                <button class="call-btn mute-btn"><i class="fas fa-microphone-slash"></i></button>
+                <button class="call-btn end-btn"><i class="fas fa-phone-slash"></i></button>
+                <button class="call-btn chat-btn"><i class="fas fa-comment"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Call Modal -->
+    <div class="modal" id="video-call-modal">
+        <div class="modal-content video-call-content">
+            <div class="video-call-main">
+                <video id="remote-video" autoplay></video>
+                <div class="video-call-overlay">
+                    <div class="call-status">Connecting...</div>
+                </div>
+                <div class="video-call-self">
+                    <video id="local-video" autoplay muted></video>
+                </div>
+            </div>
+            <div class="video-call-controls">
+                <button class="video-call-btn mute-audio-btn"><i class="fas fa-microphone"></i></button>
+                <button class="video-call-btn end-call-btn"><i class="fas fa-phone-slash"></i></button>
+                <button class="video-call-btn mute-video-btn"><i class="fas fa-video"></i></button>
+                <button class="video-call-btn flip-camera-btn"><i class="fas fa-sync"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- My Profile Modal -->
+    <div class="modal" id="my-profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>My Profile</h2>
+                <button class="modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="my-profile-content">
+                    <div class="my-profile-avatar">
+                        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="My Profile" class="avatar-img large">
+                        <button class="change-avatar-btn"><i class="fas fa-camera"></i></button>
+                    </div>
+                    <div class="form-group">
+                        <label for="my-name">Name</label>
+                        <input type="text" id="my-name" value="Jack Wilson">
+                    </div>
+                    <div class="form-group">
+                        <label for="my-status">Status</label>
+                        <input type="text" id="my-status" value="Available">
+                    </div>
+                    <div class="form-group">
+                        <label for="my-phone">Phone</label>
+                        <input type="text" id="my-phone" value="+1 234 567 8901">
+                    </div>
+                    <div class="form-group">
+                        <label for="my-email">Email</label>
+                        <input type="email" id="my-email" value="jack.wilson@example.com">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary modal-close">Cancel</button>
+                <button class="btn-primary" id="save-profile-btn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden File Input -->
+    <input type="file" id="file-input" style="display: none;" multiple>
+
+    <script src="script.js"></script>
+</body>
+</html>
