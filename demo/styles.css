@@ -112,7 +112,7 @@ body {
     padding: 1rem 1.5rem;
     border-bottom: 1px solid var(--border-color);
     box-shadow: 0 2px 4px var(--shadow-color);
-    width: 100%;
+    width: 97%;
     position: fixed;
     top: 0;
     background: var(--white);
@@ -208,7 +208,7 @@ body {
     overflow-x: auto;
     position: fixed;
     top: 4rem;
-    width: 100%;
+    width: 97%;
     background: var(--white);
     z-index: 4;
 }

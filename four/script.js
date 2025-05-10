@@ -780,5 +780,34 @@ document.addEventListener('DOMContentLoaded', function() {
         //     }
         // }
 
-    
+function closeAllDropdowns() {
+    document.querySelectorAll('.user-dropdown, .nested-dropdown').forEach(el => {
+        el.classList.add('hidden');
+    });
+}
+
+// Toggle user dropdown menu
+document.querySelectorAll('.chat-options i').forEach(icon => {
+    icon.addEventListener('click', function (e) {
+        e.stopPropagation();
+        closeAllDropdowns(); // close others
+        const dropdown = this.nextElementSibling;
+        if (dropdown) dropdown.classList.toggle('hidden');
+    });
+});
+
+// Toggle nested dropdown ("Move to")
+document.querySelectorAll('.has-submenu').forEach(item => {
+    item.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const nested = this.querySelector('.nested-dropdown');
+        if (nested) nested.classList.toggle('hidden');
+    });
+});
+
+// Close dropdowns on outside click
+document.addEventListener('click', () => {
+    closeAllDropdowns();
+});
+
 });

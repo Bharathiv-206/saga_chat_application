@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saga Chat</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" media="all">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -59,21 +59,23 @@
                     <div class="tab" data-tab="group-chats">Group chats</div>
                     <div class="tab" data-tab="meeting-chats">Meeting chats</div>
                     <div class="tab" data-tab="file-chats">File chats</div>
+                    <div class="tab" data-tab="direct-chats">Direct Chat </div>
                      <button class="collapse-all-button">
                         <i class="fa-solid fa-angles-down"></i> Collapse All Sections
                     </button>
+                
                 </div>
                 <div class="new-items-dropdown">
-                    <div class="new-items-button">New items <i class="fa-solid fa-chevron-down"></i></div>
-                    <div class="dropdown-content">
+                    <div class="new-items-button" onclick="toggleDropdown()">New items <i class="fa-solid fa-chevron-down"></i></div>
+                    <div class="dropdown-content hidden">
                         <div class="dropdown-item"><i class="fa-solid fa-file"></i> New section</div>
                         <div class="dropdown-item"><i class="fa-solid fa-comment"></i> New Chat</div>
                         <div class="dropdown-item"><i class="fa-solid fa-users"></i> New Group</div>
                     </div>
-                    <div>
-                   
-                    </div>
                 </div>
+                <div>
+                </div>
+                <div class="tab" data-tab="call-history">Call History</div>
             </div>
 
             <!-- Collapse All Button -->
@@ -96,9 +98,8 @@
                             <div class="section-more">
                                 <i class="fa-solid fa-ellipsis-vertical section-options"></i>
                                 <div class="section-dropdown hidden">
-                                    <!-- <div class="dropdown-item"><i class="fa-solid fa-plus"></i> Add new favorite</div> -->
                                     <div class="dropdown-item"><i class="fa-solid fa-pen"></i> Rename section</div>
-                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete section</div>
+                                    <div class="dropdown-item" onclick="deleteFavoriteSection(this)"><i class="fa-solid fa-trash"></i> Delete section</div>
                                 </div>
                             </div>
                         </div>
@@ -108,76 +109,22 @@
                                 <div class="chat-details">
                                     <div class="chat-header">
                                         <div class="chat-name">Bharathi Ragav</div>
-                                        <!-- <div class="chat-time">10:30 AM</div> -->
                                     </div>
                                     <div class="chat-message">Hi! Why did you call?</div>
                                 </div>
                                 <div class="chat-options">
                                     <i class="fa-solid fa-ellipsis-vertical"></i>
-                                    
                                     <div class="user-dropdown hidden">
                                         <div class="dropdown-item remove-favorite" onclick="removeFromFavorites(this)"><i class="fa-solid fa-star"></i> Remove from favorites</div>
                                         <div class="dropdown-item"><i class="fa-solid fa-exclamation"></i> Mark as important</div>
                                         <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
                                         <div class="dropdown-item" onclick="deleteFavoriteChat(this)"><i class="fa-solid fa-trash"></i> Delete chat</div>
                                     </div>
-
-                                    <script>
-                                        // Function to remove from favorites (move the chat to another section)
-                                        function removeFromFavorites(element) {
-                                            const chatItem = element.closest('.chat-item');
-                                            if (chatItem) {
-                                                const chatsSection = document.querySelector('[data-section="chats"] .chat-items');
-                                                if (chatsSection) {
-                                                    chatsSection.appendChild(chatItem);
-                                                    alert("Chat removed from favorites!");
-                                                }
-                                            }
-                                        }
-
-                                        // Function to delete chat (remove the chat only from the favorites section)
-                                        function deleteFavoriteChat(element) {
-                                            const chatItem = element.closest('.chat-item');
-                                            const favoriteSection = document.querySelector('[data-section="favorite"] .chat-items');
-                                            if (chatItem && favoriteSection.contains(chatItem)) {
-                                                chatItem.remove();
-                                                alert("Chat deleted from favorites!");
-                                            }
-                                        }
-                                    </script>
-                                    
-                                </div>
-                            </div>
-                            <div class="chat-item" data-user-id="2">
-                                <div class="chat-avatar"><img src="images/thamizh.png" alt="user" class="chat-profile"></div>
-                                <div class="chat-details">
-                                    <div class="chat-header">
-                                        <div class="chat-name">Thamizharasan Raguraman</div>
-                                        <!-- <div class="chat-time">Yesterday</div> -->
-                                    </div>
-                                    <div class="chat-message">This is a Figma Community file. Community is a...</div>
-                                </div>
-                                <div class="chat-options">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </div>
-                            </div>
-                            <div class="chat-item unread" data-user-id="3">
-                                <div class="chat-avatar"><img src="images/senkathir.png" alt="user" class="chat-profile"></div>
-                                <div class="chat-details">
-                                    <div class="chat-header">
-                                        <div class="chat-name">Senkathir Selvan Selvamani</div>
-                                        <!-- <div class="chat-time">Yesterday</div> -->
-                                    </div>
-                                    <div class="chat-message">Hey team! Are we all set for the dashboard UI...</div>
-                                </div>
-                                <div class="chat-options">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Important Section -->
                     <div class="chat-section" data-section="important">
                         <div class="section-header">
                             <div class="section-title">
@@ -186,9 +133,8 @@
                             <div class="section-more">
                                 <i class="fa-solid fa-ellipsis-vertical section-options"></i>
                                 <div class="section-dropdown hidden">
-                                    <!-- <div class="dropdown-item"><i class="fa-solid fa-plus"></i> Add new important</div> -->
                                     <div class="dropdown-item"><i class="fa-solid fa-pen"></i> Rename section</div>
-                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete section</div>
+                                    <div class="dropdown-item" onclick="deleteImportantSection(this)"><i class="fa-solid fa-trash"></i> Delete section</div>
                                 </div>
                             </div>
                         </div>
@@ -198,29 +144,82 @@
                                 <div class="chat-details">
                                     <div class="chat-header">
                                         <div class="chat-name">Janani Radhakrishnan Sagasoft</div>
-                                        <!-- <div class="chat-time">Monday</div> -->
                                     </div>
                                     <div class="chat-message">Hi guys! I've added my wireframe ideas to the...</div>
                                 </div>
                                 <div class="chat-options">
                                     <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </div>
-                            </div>
-                            <div class="chat-item unread" data-user-id="6">
-                                <div class="chat-avatar"><img src="images/men1.png" alt="user" class="chat-profile"></div>
-                                <div class="chat-details">
-                                    <div class="chat-header">
-                                        <div class="chat-name">Vasanth Kumar Sivamani</div>
-                                        <!-- <div class="chat-time">Last week</div> -->
+                                    <div class="user-dropdown hidden">
+                                        <div class="dropdown-item remove-important" onclick="removeFromImportant(this)"><i class="fa-solid fa-star"></i> Remove from important</div>
+                                        <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
+                                        <div class="dropdown-item" onclick="deleteImportantChat(this)"><i class="fa-solid fa-trash"></i> Delete chat</div>
                                     </div>
-                                    <div class="chat-message">Cool, let's hop on a quick call in 10 mins?</div>
-                                </div>
-                                <div class="chat-options">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <script>
+                        // Function to remove from favorites
+                        function removeFromFavorites(element) {
+                            const chatItem = element.closest('.chat-item');
+                            if (chatItem) {
+                                const chatsSection = document.querySelector('[data-section="chats"] .chat-items');
+                                if (chatsSection) {
+                                    chatsSection.appendChild(chatItem);
+                                    alert("Chat removed from favorites!");
+                                }
+                            }
+                        }
+
+                        // Function to delete chat from favorites
+                        function deleteFavoriteChat(element) {
+                            const chatItem = element.closest('.chat-item');
+                            if (chatItem) {
+                                chatItem.remove();
+                                alert("Chat deleted from favorites!");
+                            }
+                        }
+
+                        // Function to delete the favorite section
+                        function deleteFavoriteSection(element) {
+                            const favoriteSection = element.closest('.chat-section');
+                            if (favoriteSection) {
+                                favoriteSection.remove();
+                                alert("Favorite section deleted!");
+                            }
+                        }
+
+                        // Function to remove from important
+                        function removeFromImportant(element) {
+                            const chatItem = element.closest('.chat-item');
+                            if (chatItem) {
+                                const chatsSection = document.querySelector('[data-section="chats"] .chat-items');
+                                if (chatsSection) {
+                                    chatsSection.appendChild(chatItem);
+                                    alert("Chat removed from important!");
+                                }
+                            }
+                        }
+
+                        // Function to delete chat from important
+                        function deleteImportantChat(element) {
+                            const chatItem = element.closest('.chat-item');
+                            if (chatItem) {
+                                chatItem.remove();
+                                alert("Chat deleted from important!");
+                            }
+                        }
+
+                        // Function to delete the important section
+                        function deleteImportantSection(element) {
+                            const importantSection = element.closest('.chat-section');
+                            if (importantSection) {
+                                importantSection.remove();
+                                alert("Important section deleted!");
+                            }
+                        }
+                    </script>
 
                     <!-- All Chats Section -->
                     <div class="chat-section" data-section="chats">
@@ -238,30 +237,103 @@
                             </div>
                         </div>
                         <div class="chat-items">
+                            <!-- Individual Chats -->
                             <div class="chat-item" data-user-id="4">
                                 <div class="chat-avatar"><img src="images/ethiraj.png" alt="user" class="chat-profile"></div>
                                 <div class="chat-details">
                                     <div class="chat-header">
                                         <div class="chat-name">Ethiraj Bro Sagasoft</div>
-                                        <!-- <div class="chat-time">Monday</div> -->
                                     </div>
                                     <div class="chat-message">Almost ready, just finishing a few points.</div>
                                 </div>
                                 <div class="chat-options">
                                     <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <div class="user-dropdown hidden">
+                                    <div class="dropdown-item has-submenu">
+                                        <i class="fa-solid fa-star"></i> Move to
+                                        <div class="nested-dropdown hidden">
+                                            <div class="dropdown-item"><i class="fa-solid fa-star"></i> Favorite</div>
+                                            <div class="dropdown-item"><i class="fa-solid fa-exclamation"></i> Important</div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-volume-xmark"></i> Mute</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete chat</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-item" data-user-id="2">
+                                <div class="chat-avatar"><img src="images/thamizh.png" alt="user" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Thamizharasan Raguraman</div>
+                                        <!-- <div class="chat-time">Yesterday</div> -->
+                                    </div>
+                                    <div class="chat-message">This is a Figma Community file. Community is a...</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <div class="user-dropdown hidden">
+                                    <div class="dropdown-item has-submenu">
+                                        <i class="fa-solid fa-star"></i> Move to
+                                        <div class="nested-dropdown hidden">
+                                            <div class="dropdown-item"><i class="fa-solid fa-star"></i> Favorite</div>
+                                            <div class="dropdown-item"><i class="fa-solid fa-exclamation"></i> Important</div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-volume-xmark"></i> Mute</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete chat</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-item unread" data-user-id="3">
+                                <div class="chat-avatar"><img src="images/senkathir.png" alt="user" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Senkathir Selvan Selvamani</div>
+                                        <!-- <div class="chat-time">Yesterday</div> -->
+                                    </div>
+                                    <div class="chat-message">Hey team! Are we all set for the dashboard UI...</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <div class="user-dropdown hidden">
+                                    <div class="dropdown-item has-submenu">
+                                        <i class="fa-solid fa-star"></i> Move to
+                                        <div class="nested-dropdown hidden">
+                                            <div class="dropdown-item"><i class="fa-solid fa-star"></i> Favorite</div>
+                                            <div class="dropdown-item"><i class="fa-solid fa-exclamation"></i> Important</div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-volume-xmark"></i> Mute</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete chat</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="chat-item" data-user-id="7">
                                 <div class="chat-avatar"><img src="images/girl.png" alt="user" class="chat-profile"></div>
                                 <div class="chat-details">
                                     <div class="chat-header">
-                                        <div class="chat-name">Punitha senthil</div>
-                                        <!-- <div class="chat-time">Last week</div> -->
+                                        <div class="chat-name">Punitha Senthil</div>
                                     </div>
-                                    <div class="chat-message">This is a Figma Community file.Community is a...</div>
+                                    <div class="chat-message">This is a Figma Community file. Community is a...</div>
                                 </div>
                                 <div class="chat-options">
                                     <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <div class="user-dropdown hidden">
+                                    <div class="dropdown-item has-submenu">
+                                        <i class="fa-solid fa-star"></i> Move to
+                                        <div class="nested-dropdown hidden">
+                                            <div class="dropdown-item"><i class="fa-solid fa-star"></i> Favorite</div>
+                                            <div class="dropdown-item"><i class="fa-solid fa-exclamation"></i> Important</div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-volume-xmark"></i> Mute</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete chat</div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="chat-item" data-user-id="5">
@@ -269,54 +341,51 @@
                                 <div class="chat-details">
                                     <div class="chat-header">
                                         <div class="chat-name">Janani Radhakrishnan Sagasoft</div>
-                                        <!-- <div class="chat-time">Monday</div> -->
                                     </div>
                                     <div class="chat-message">Hi guys! I've added my wireframe ideas to the...</div>
                                 </div>
                                 <div class="chat-options">
                                     <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <div class="user-dropdown hidden">
+                                    <div class="dropdown-item has-submenu">
+                                        <i class="fa-solid fa-star"></i> Move to
+                                        <div class="nested-dropdown hidden">
+                                            <div class="dropdown-item"><i class="fa-solid fa-star"></i> Favorite</div>
+                                            <div class="dropdown-item"><i class="fa-solid fa-exclamation"></i> Important</div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-volume-xmark"></i> Mute</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete chat</div>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="chat-item unread" data-user-id="6">
                                 <div class="chat-avatar"><img src="images/men1.png" alt="user" class="chat-profile"></div>
                                 <div class="chat-details">
                                     <div class="chat-header">
                                         <div class="chat-name">Vasanth Kumar Sivamani</div>
-                                        <!-- <div class="chat-time">Last week</div> -->
                                     </div>
                                     <div class="chat-message">Cool, let's hop on a quick call in 10 mins?</div>
                                 </div>
                                 
                                 <div class="chat-options">
                                     <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <div class="user-dropdown hidden">
+                                    <div class="dropdown-item has-submenu">
+                                        <i class="fa-solid fa-star"></i> Move to
+                                        <div class="nested-dropdown hidden">
+                                            <div class="dropdown-item"><i class="fa-solid fa-star"></i> Favorite</div>
+                                            <div class="dropdown-item"><i class="fa-solid fa-exclamation"></i> Important</div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-volume-xmark"></i> Mute</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete chat</div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="chat-item" data-user-id="7">
-                                <div class="chat-avatar"><img src="images/girl.png" alt="user" class="chat-profile"></div>
-                                <div class="chat-details">
-                                    <div class="chat-header">
-                                        <div class="chat-name">Punitha senthil</div>
-                                        <!-- <div class="chat-time">Last week</div> -->
-                                    </div>
-                                    <div class="chat-message">This is a Figma Community file.Community is a...</div>
-                                </div>
-                                <div class="chat-options">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </div>
-                            </div>
-<!--                             
-                            <div class="chat-item" data-user-id="7">
-                                <div class="chat-avatar"><img src="images/men2.png" alt="user" class="chat-profile"></div>
-                                <div class="chat-details">
-                                    <div class="chat-header">
-                                        <div class="chat-name">Abitha Kaasi</div>
-                                    </div>
-                                    <div class="chat-message">This is a Figma Community file.Community is a...</div>
-                                </div>
-                                <div class="chat-options">
-                                    <i class="fa-solid fa-ellipsis-vertical"></i>
-                                </div>
-                            </div> -->
 
 
                             <div class="chat-item" data-user-id="1">
@@ -324,18 +393,96 @@
                                 <div class="chat-details">
                                     <div class="chat-header">
                                         <div class="chat-name">Bharathi Ragav</div>
-                                        <!-- <div class="chat-time">10:30 AM</div> -->
                                     </div>
                                     <div class="chat-message">Hi! Why did you call?</div>
                                 </div>
-                                
                                 <div class="chat-options">
                                     <i class="fa-solid fa-ellipsis-vertical"></i>
                                     <div class="user-dropdown hidden">
-                                        <div class="dropdown-item"><i class="fa-solid fa-star"></i> Remove from favorites</div>
-                                        <div class="dropdown-item"><i class="fa-solid fa-exclamation"></i> Mark as important</div>
-                                        <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
-                                        <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete chat</div>
+                                    <div class="dropdown-item has-submenu">
+                                        <i class="fa-solid fa-star"></i> Move to
+                                        <div class="nested-dropdown hidden">
+                                            <div class="dropdown-item"><i class="fa-solid fa-star"></i> Favorite</div>
+                                            <div class="dropdown-item"><i class="fa-solid fa-exclamation"></i> Important</div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-volume-xmark"></i> Mute</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete chat</div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <!-- Group Chats -->
+                            <div class="chat-item group-chat" data-group-id="1">
+                                <div class="chat-avatar"><img src="images/SagasoftTeam.jpg" alt="group" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Sagasoft Team</div>
+                                    </div>
+                                    <div class="chat-message">Welcome to the Sagasoft Team group!</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <div class="user-dropdown hidden">
+                                    <div class="dropdown-item has-submenu">
+                                        <i class="fa-solid fa-star"></i> Move to
+                                        <div class="nested-dropdown hidden">
+                                            <div class="dropdown-item"><i class="fa-solid fa-star"></i> Favorite</div>
+                                            <div class="dropdown-item"><i class="fa-solid fa-exclamation"></i> Important</div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-volume-xmark"></i> Mute</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete chat</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-item group-chat" data-group-id="2">
+                                <div class="chat-avatar"><img src="images/Frontend_Team.jpg" alt="group" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Frontend Team</div>
+                                    </div>
+                                    <div class="chat-message">Frontend Team group created successfully!</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <div class="user-dropdown hidden">
+                                    <div class="dropdown-item has-submenu">
+                                        <i class="fa-solid fa-star"></i> Move to
+                                        <div class="nested-dropdown hidden">
+                                            <div class="dropdown-item"><i class="fa-solid fa-star"></i> Favorite</div>
+                                            <div class="dropdown-item"><i class="fa-solid fa-exclamation"></i> Important</div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-volume-xmark"></i> Mute</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete chat</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="chat-item group-chat" data-group-id="3">
+                                <div class="chat-avatar"><img src="images/BackendTeam.jpg" alt="group" class="chat-profile"></div>
+                                <div class="chat-details">
+                                    <div class="chat-header">
+                                        <div class="chat-name">Backend Team</div>
+                                    </div>
+                                    <div class="chat-message">Backend Team group created successfully!</div>
+                                </div>
+                                <div class="chat-options">
+                                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    <div class="user-dropdown hidden">
+                                    <div class="dropdown-item has-submenu">
+                                        <i class="fa-solid fa-star"></i> Move to
+                                        <div class="nested-dropdown hidden">
+                                            <div class="dropdown-item"><i class="fa-solid fa-star"></i> Favorite</div>
+                                            <div class="dropdown-item"><i class="fa-solid fa-exclamation"></i> Important</div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-volume-xmark"></i> Mute</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-ban"></i> Block user</div>
+                                    <div class="dropdown-item"><i class="fa-solid fa-trash"></i> Delete chat</div>
                                     </div>
                                 </div>
                             </div>

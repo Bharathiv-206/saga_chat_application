@@ -1301,6 +1301,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    
     // Call init function
     initUI();
     });

@@ -32,42 +32,87 @@
             <!-- Top Navigation Bar -->
             <header class="top-nav">
                 <div class="logo">
-                    <i class="fas fa-comment-dots logo-icon"></i>
+                    <img src="images/ChatLogo.svg" alt="logo" style="height: 40px; width: 40px;">
                     <span class="logo-text"><span class="logo-saga">Saga</span> <span class="logo-chat">Chat</span></span>
-                </div>
-                <button class="mobile-menu-toggle" id="mobile-menu-toggle">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="nav-tabs-container">
-                    <div class="nav-tabs">
-                        <a href="#" class="nav-tab active" data-tab="unread"><i class="fas fa-envelope"></i> Unread</a>
-                        <a href="#" class="nav-tab" data-tab="chats"><i class="fas fa-comment"></i> Chats</a>
-                        <a href="#" class="nav-tab" data-tab="group-chats"><i class="fas fa-users"></i> Group chats</a>
-                        <a href="#" class="nav-tab" data-tab="meeting-chats"><i class="fas fa-video"></i> Meeting chats</a>
-                        <a href="#" class="nav-tab" data-tab="file-chats"><i class="fas fa-file"></i> File chats</a>
-                        <a href="#" class="nav-tab" id="collapse-all-btn"><i class="fas fa-compress-alt"></i> Collapse all section</a>
-                    </div>
                 </div>
                 <div class="nav-right">
                     <div class="search-container" id="search-container">
                         <i class="fas fa-search search-icon"></i>
-                        <input type="text" class="search-input" placeholder="Search">
+                        <input type="text" class="search-input" placeholder="Search" id="search-bar" oninput="performSearch()">
                     </div>
-                    <div class="dropdown">
-                        <a href="#" class="nav-icon dropdown-toggle" id="new-items-dropdown">
-                            <i class="fas fa-plus"></i>
-                        </a>
-                        <div class="dropdown-menu" id="new-items-menu">
-                            <a href="#" class="dropdown-item" id="new-message-btn"><i class="fas fa-comment"></i> New Message</a>
-                            <a href="#" class="dropdown-item" id="new-group-btn"><i class="fas fa-users"></i> New Group</a>
-                            <a href="#" class="dropdown-item" id="new-section-btn"><i class="fas fa-folder"></i> New Section</a>
-                        </div>
+                    <div class="search-results" id="search-results" style="display: none;">
+                        <!-- Real-time search results will be displayed here -->
                     </div>
+                    <div class="no-results" id="no-results" style="display: none;">
+                        <p>No users found</p>
+                    </div>
+
+                    <script>
+                        function performSearch() {
+                            const searchBar = document.getElementById('search-bar');
+                            const searchResults = document.getElementById('search-results');
+                            const noResults = document.getElementById('no-results');
+                            const query = searchBar.value.trim().toLowerCase();
+
+                            // Simulated user data
+                            const users = ['bharathi ragav', 'thamizharan raguraman', 'senkathir selvan', 'janani radhakrishnan'];
+
+                            // Filter users based on the query
+                            const filteredUsers = users.filter(user => user.toLowerCase().includes(query));
+
+                            // Display results or "No users found" message
+                            if (query && filteredUsers.length > 0) {
+                                searchResults.style.display = 'block';
+                                noResults.style.display = 'none';
+                                searchResults.innerHTML = filteredUsers.map(user => `<div class="search-result-item">${user}</div>`).join('');
+                            } else if (query) {
+                                searchResults.style.display = 'none';
+                                noResults.style.display = 'block';
+                            } else {
+                                searchResults.style.display = 'none';
+                                noResults.style.display = 'none';
+                            }
+                        }
+                    </script>
                     <a href="#" class="nav-icon" id="notifications-btn"><i class="fas fa-bell"></i></a>
                     <a href="#" class="nav-icon" id="help-btn"><i class="fas fa-question-circle"></i></a>
                     <a href="#" class="nav-icon" id="settings-btn"><i class="fas fa-cog"></i></a>
                 </div>
             </header>
+            <div class="nav-tabs-container">
+                <div class="nav-tabs">
+                    <a href="#" class="nav-tab active" data-tab="unread"><i class="fas fa-envelope"></i> Unread</a>
+                    <a href="#" class="nav-tab" data-tab="chats"><i class="fas fa-comment"></i> Chats</a>
+                    <a href="#" class="nav-tab" data-tab="group-chats"><i class="fas fa-users"></i> Group chats</a>
+                    <a href="#" class="nav-tab" data-tab="meeting-chats"><i class="fas fa-video"></i> Meeting chats</a>
+                    <a href="#" class="nav-tab" data-tab="file-chats"><i class="fas fa-file"></i> File chats</a>
+                    <a href="#" class="nav-tab" data-tab="direct-chats"><i class="fas fa-user"></i> Direct chats</a>
+                    <a href="#" class="nav-tab" id="collapse-all-btn" onclick="toggleSections()"><i class="fas fa-compress-alt"></i> Collapse all sections</a>
+                    <script>
+                        let areSectionsCollapsed = false;
+
+                        function toggleSections() {
+                            const sections = document.querySelectorAll('.chat-section');
+                            sections.forEach(section => {
+                                const chatList = section.querySelector('.chat-list');
+                                if (chatList) {
+                                    chatList.style.display = areSectionsCollapsed ? 'block' : 'none';
+                                }
+                            });
+                            areSectionsCollapsed = !areSectionsCollapsed;
+                        }
+                    </script>
+                    <div class="nav-tab dropdown" id="new-items-btn">
+                        <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event, 'new-items-btn')"><i class="fas fa-plus"></i> New Items</a>
+                        <div class="dropdown-menu" style="display: none;">
+                            <a href="#" class="dropdown-item" id="new-message-btn"><i class="fas fa-envelope"></i> New Message</a>
+                            <a href="#" class="dropdown-item" id="new-group-btn"><i class="fas fa-users"></i> New Group</a>
+                            <a href="#" class="dropdown-item" id="new-section-btn"><i class="fas fa-folder-plus"></i> New Section</a>
+                        </div>
+                    </div>
+                    <a href="#" class="nav-tab" id="call-history-btn"><i class="fas fa-phone"></i> Call History</a>
+                </div>
+            </div>
 
             <!-- Chat Content Area -->
             <div class="chat-container">
@@ -99,7 +144,7 @@
                         <div class="chat-list">
                             <div class="chat-item" data-user-id="1">
                                 <div class="chat-avatar">
-                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img">
+                                    <img src="images/bharathi.jpg" alt="Bharathi Ragav" class="avatar-img">
                                 </div>
                                 <div class="chat-info">
                                     <div class="chat-name">Bharathi Ragav</div>
@@ -120,7 +165,7 @@
                             </div>
                             <div class="chat-item" data-user-id="2">
                                 <div class="chat-avatar">
-                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Thamizharan Raguraman" class="avatar-img">
+                                    <img src="images/thamizh.png" alt="Thamizharan Raguraman" class="avatar-img">
                                 </div>
                                 <div class="chat-info">
                                     <div class="chat-name">Thamizharan Raguraman</div>
@@ -163,7 +208,7 @@
                         <div class="chat-list">
                             <div class="chat-item" data-user-id="3">
                                 <div class="chat-avatar">
-                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Janani Radhakrishan Sagasoft" class="avatar-img">
+                                    <img src="images/janani.png" alt="Janani Radhakrishan Sagasoft" class="avatar-img">
                                 </div>
                                 <div class="chat-info">
                                     <div class="chat-name">Janani Radhakrishan</div>
@@ -184,7 +229,7 @@
                             </div>
                             <div class="chat-item unread" data-user-id="4">
                                 <div class="chat-avatar">
-                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Senkathir Selvan Selvamani" class="avatar-img">
+                                    <img src="images/senkathir.png" alt="Senkathir Selvan Selvamani" class="avatar-img">
                                 </div>
                                 <div class="chat-info">
                                     <div class="chat-name">Senkathir Selvan</div>
@@ -227,7 +272,7 @@
                         <div class="chat-list">
                             <div class="chat-item" data-user-id="5">
                                 <div class="chat-avatar">
-                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Ethiraj Bro Sagasoft" class="avatar-img">
+                                    <img src="images/ethiraj.png" alt="Ethiraj Bro Sagasoft" class="avatar-img">
                                 </div>
                                 <div class="chat-info">
                                     <div class="chat-name">Ethiraj Bro</div>
@@ -247,7 +292,7 @@
                             </div>
                             <div class="chat-item unread" data-user-id="6">
                                 <div class="chat-avatar">
-                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Vasanth Kumar Sivamani" class="avatar-img">
+                                    <img src="images/men1.png" alt="Vasanth Kumar Sivamani" class="avatar-img">
                                 </div>
                                 <div class="chat-info">
                                     <div class="chat-name">Vasanth Kumar</div>
@@ -267,7 +312,7 @@
                             </div>
                             <div class="chat-item" data-user-id="7">
                                 <div class="chat-avatar">
-                                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Punitha senthil" class="avatar-img">
+                                    <img src="images/girl.png" alt="Punitha senthil" class="avatar-img">
                                 </div>
                                 <div class="chat-info">
                                     <div class="chat-name">Punitha Senthil</div>
@@ -309,7 +354,7 @@
                         <div class="chat-header-left">
                             <button class="back-button" id="back-to-chats"><i class="fas fa-arrow-left"></i></button>
                             <div class="chat-avatar user-profile-trigger">
-                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img">
+                                <img src="images/bharathi.jpg" alt="Bharathi Ragav" class="avatar-img">
                             </div>
                             <div class="chat-header-info user-profile-trigger">
                                 <div class="chat-header-name">Bharathi Ragav</div>
@@ -364,7 +409,7 @@
                         </div>
                         <div class="message incoming" data-message-id="2">
                             <div class="message-avatar user-profile-trigger">
-                                <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Desktop%20-%20127.jpg-InwRZl1SyaMJ0Qr3ReO84inFBY7S5o.jpeg" alt="Bharathi Ragav" class="avatar-img small">
+                                <img src="images/bharathi.jpg">
                             </div>
                             <div class="message-content">
                                 <div class="message-sender">Bharathi Ragav</div>

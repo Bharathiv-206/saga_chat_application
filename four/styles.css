@@ -552,6 +552,43 @@ body {
     cursor: pointer;
 }
 
+.user-dropdown {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 6px;
+    /* z-index: 10; */
+    width: 180px;
+    z-index: 10;
+    /* display: none; */
+}
+
+.nested-dropdown {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 6px;
+    z-index: 10;
+    width: 180px;
+}
+
+.hidden {
+    display: none;
+}
+
+.has-submenu {
+    position: relative;
+}
+
+.has-submenu .nested-dropdown {
+    top: 0;
+    left: 100%;
+    margin-left: 4px;
+}
+
+
 /* Chat Window */
 .chat-window {
     flex: 1;
@@ -1200,7 +1237,7 @@ body.dark-mode {
     }
     
     .chat-window {
-        position: fixed;
+        /* position: fixed; */
         inset: 0;
         margin-top: 0;
         z-index: 30;
